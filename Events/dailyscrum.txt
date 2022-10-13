@@ -17,11 +17,13 @@ Each member writes down answers to 3 questions in the following format:
 10/12/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+   Finished the proposal and discussed the approximate project structure, requirements
 2.To do until next Scrum:
-    
+    Find necessary tutorials
+    Learn about AZURE Sql db and how to work with it
+    Learn about  Material Design Toolkit
 3.Need assistance / figure things out
-
+    AZURE Sql db and Material Design Toolkit
 
 
 10/12/2022 Oxana
