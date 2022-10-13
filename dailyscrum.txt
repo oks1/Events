@@ -43,11 +43,13 @@ Each member writes down answers to 3 questions in the following format:
 10/12/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
-   
+   Finished the proposal
 2.To do until next Scrum:
-    
+   Decided about project structure
+   git repository
+   Trello
 3.Need assistance / figure things out
-
+  Azure, Material Design Toolkit
 
 
 10/13/2022 Myrzagul
