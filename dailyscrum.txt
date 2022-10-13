@@ -29,10 +29,14 @@ Each member writes down answers to 3 questions in the following format:
 10/12/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-   
+	-created db schema for proposal
+	-created git repository
+	-created trello board
 2.To do until next Scrum:
-    
+    -create an Azure SQL Database
+    -setup the database
 3.Need assistance / figure things out
+	-team members access to a db in Azure
 
 
 
