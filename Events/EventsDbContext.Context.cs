@@ -26,5 +26,9 @@ namespace Events
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<EventDetail> EventDetails { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<Staff> Staffs { get; set; }
     }
 }

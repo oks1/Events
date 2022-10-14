@@ -12,21 +12,28 @@ namespace Events
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class EventDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public EventDetail()
         {
-            this.EventDetails = new HashSet<EventDetail>();
+            this.Services = new HashSet<Service>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public string TypeOfEvent { get; set; }
+        public int CustomerId { get; set; }
+        public int StaffId { get; set; }
+        public string Title { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public System.DateTime EndDate { get; set; }
+        public int LocationId { get; set; }
+        public string Notes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EventDetail> EventDetails { get; set; }
+        public virtual ICollection<Service> Services { get; set; }
+        public virtual Location Location { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Staff Staff { get; set; }
     }
 }
