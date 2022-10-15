@@ -17,6 +17,7 @@ namespace Events
         public int Id { get; set; }
         public int EventId { get; set; }
         public string ServiceName { get; set; }
+        public decimal PricePerHour { get; set; }
     
         public virtual EventDetail EventDetail { get; set; }
     }
