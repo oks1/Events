@@ -8,8 +8,13 @@
         
         mc:Ignorable="d"
         Title="Event" Height="582" Width="1085">
-    <Grid Background="#FFEDF9">
-        <materialDesign:Card>
+    <Grid>
+        <Grid Height="70" VerticalAlignment="Top" Background="#FFE91E63">
+            <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">HappyEvent Planner</TextBlock>
+        </Grid>
+
+        <materialDesign:Card Margin="0,69,0,0">
+
             <TabControl
     VerticalContentAlignment="Center"
     materialDesign:ColorZoneAssist.Mode="PrimaryMid"
@@ -29,27 +34,38 @@
             Text="Customers" />
                         </StackPanel>
                     </TabItem.Header>
-                        <ListView x:Name="LvCustomers"
-  ItemsSource="{Binding Items1}" Margin="0,0,0,0" Width="1000" VerticalAlignment="Top" Height="400">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="416*"/>
+                            <RowDefinition Height="81*"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="LvEvents"
+  ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
                             <ListView.View>
                                 <GridView>
+
                                     <GridViewColumn 
         DisplayMemberBinding="{Binding Name}"
         Header="Name" />
-                                    <GridViewColumn
+                                    <GridViewColumn 
         DisplayMemberBinding="{Binding Email}"
         Header="Email" />
                                     <GridViewColumn 
-        DisplayMemberBinding="{Binding Phone}"
+        
+         DisplayMemberBinding="{Binding Phone}"
         Header="Phone" />
-                                    <GridViewColumn         
+                                    <GridViewColumn 
+        
          DisplayMemberBinding="{Binding Address}"
         Header="Address" />
-                                    
-
-                                </GridView>
+                                 </GridView>
                             </ListView.View>
                         </ListView>
+                        <Button x:Name="BtnAddEvent" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteEvent" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateEvent"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                    </Grid>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
@@ -66,8 +82,12 @@
             Text="Events" />
                         </StackPanel>
                     </TabItem.Header>
-                      <Grid>
-                        <ListView x:Name="LvEvents"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="416*"/>
+                            <RowDefinition Height="81*"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="LvCustomers"
   ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
                             <ListView.View>
                                 <GridView>
@@ -103,25 +123,16 @@
          DisplayMemberBinding="{Binding TotalAmount}"
         Header="Amount" />
                                     <GridViewColumn
-        
-         DisplayMemberBinding="{Binding Notes}"
+                 DisplayMemberBinding="{Binding Notes}"
         Header="Notes" />
-
-
-
                                 </GridView>
                             </ListView.View>
-
                         </ListView>
-                            <Button x:Name="BtnAddEvent" Content="Add" Margin="100,409,4,58" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100"/>
-                        <Button x:Name="BtnDeleteEvent" Content="Delete" Margin="0,409,0,58" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100"/>
-                        <Button x:Name="BtnUpdateEvent"  Content="Update" Margin="100,409,100,58" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100"/>
-
-                        </Grid>
-                  
-   
-
-    </TabItem>
+                        <Button x:Name="BtnAddCustomer" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                    </Grid>
+                </TabItem>
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel
@@ -137,12 +148,45 @@
             Text="Locations" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock>
-        <Run
-          Text="tab 3 content. Default look and behaviors." />
-        <LineBreak />
-        <LineBreak />
-                    </TextBlock>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="416*"/>
+                            <RowDefinition Height="81*"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="LvLocations"
+  ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding Name}"
+        Header="Name" />
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding Address}"
+        Header="Address" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Phone}"
+        Header="Phone" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding ContactName}"
+        Header="Contact Name" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Email}"
+        Header="Email" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding PricePerPerson}"
+        Header="Price" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button x:Name="BtnAddLocation" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteLocation" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateLocation"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                    </Grid>
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
@@ -159,12 +203,36 @@
             Text="Services" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock>
-        <Run
-          Text="tab 4 content. Default look and behaviors." />
-        <LineBreak />
-        <LineBreak />
-                    </TextBlock>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="416*"/>
+                            <RowDefinition Height="81*"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="LvServices"
+  ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding Name}"
+        Header="Name" />
+                                                                     
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding EventId}"
+        Header="Event" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding PricePerHour}"
+        Header="Price" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button x:Name="BtnAddService" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteService" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateService"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                    </Grid>
+
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
@@ -181,6 +249,74 @@
             Text="Staffs" />
                         </StackPanel>
                     </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="416*"/>
+                            <RowDefinition Height="81*"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="LvStaffs"
+  ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding Name}"
+        Header="Name" />
+
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding JobTitle}"
+        Header="Job Title" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Email}"
+        Header="Email" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Password}"
+        Header="Password" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Phone}"
+        Header="Phone" />
+                                <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Address}"
+        
+        Header="Address" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding WagePerProject}"
+        
+        Header="Price" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding PhotoId}"
+        
+        Header="Photo" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button x:Name="BtnAddStaff" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteStaff" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateStaff"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ChartBox" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Statistics" />
+                        </StackPanel>
+                    </TabItem.Header>
                     <TextBlock>
         <Run
           Text="tab 1 content. Default look and behaviors." />
@@ -192,9 +328,8 @@
       </Run>
                     </TextBlock>
                 </TabItem>
-                <Button Content="Button"/>
             </TabControl>
         </materialDesign:Card>
-       
+
     </Grid>
 </Window>
