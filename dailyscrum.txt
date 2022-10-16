@@ -76,10 +76,14 @@ Each member writes down answers to 3 questions in the following format:
 10/13/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
+Installed and Configured Material Disign
+Connected the DB
    
 2.To do until next Scrum:
+Start work on the main Window
     
 3.Need assistance / figure things out
+Dialog windows
 
 
 
@@ -107,11 +111,12 @@ Using LINQ or sql in c#
 10/14/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
+Navigation Rail on Main window
    
 2.To do until next Scrum:
-    
+    Start work on listViews
 3.Need assistance / figure things out
-
+    Dialogs Windows
 
 
 10/15/2022 Myrzagul
@@ -138,11 +143,11 @@ Using LINQ or sql in c#
 10/15/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
-   
+   ListView for Customer and Events
 2.To do until next Scrum:
-    
+    Finish ListView for other tables
 3.Need assistance / figure things out
-
+    
 
 10/16/2022 Myrzagul
 ===================
@@ -169,9 +174,9 @@ add a customer into DB
 10/16/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
-   
+   Finished with MainWindow
 2.To do until next Scrum:
-    
+    Start working on dialog Window for add/delete/update
 3.Need assistance / figure things out
 
 
