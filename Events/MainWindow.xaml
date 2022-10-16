@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Events"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
-        mc:Ignorable="d"
+        mc:Ignorable="d"  Loaded="Window_Loaded"
         Title="Event" Height="582" Width="1085">
     <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="#FFE91E63">
@@ -40,7 +40,7 @@
                             <RowDefinition Height="416*"/>
                             <RowDefinition Height="81*"/>
                         </Grid.RowDefinitions>
-                        <ListView x:Name="LvEvents"
+                        <ListView x:Name="LvCustomers"
   ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
                             <ListView.View>
                                 <GridView>
@@ -62,9 +62,9 @@
                                  </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddEvent" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteEvent" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateEvent"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddEvent" Content="Add" Margin="100,409,0,0" Click="BtnAddCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteEvent" Content="Delete" Margin="0,409,0,0" Click="BtnDeleteCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateEvent"  Content="Update" Margin="0,409,100,0" Click="BtnUpdateCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
@@ -87,7 +87,7 @@
                             <RowDefinition Height="416*"/>
                             <RowDefinition Height="81*"/>
                         </Grid.RowDefinitions>
-                        <ListView x:Name="LvCustomers"
+                        <ListView x:Name="LvEvents"
   ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
                             <ListView.View>
                                 <GridView>
@@ -128,9 +128,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddCustomer" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddCustomer" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
@@ -183,9 +183,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddLocation" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteLocation" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateLocation"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddLocation" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteLocation" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateLocation"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
@@ -228,9 +228,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddService" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteService" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateService"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddService" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteService" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateService"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
                     </Grid>
 
                 </TabItem>
@@ -297,9 +297,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddStaff" Content="Add" Margin="100,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteStaff" Content="Delete" Margin="0,409,0,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateStaff"  Content="Update" Margin="0,409,100,0" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddStaff" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteStaff" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateStaff"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
