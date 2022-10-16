@@ -65,9 +65,10 @@ Each member writes down answers to 3 questions in the following format:
 10/13/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-   
+   create an Azure SQL Database
+   setup the database
 2.To do until next Scrum:
-    
+    Learn about Material Design
 3.Need assistance / figure things out
 
 
@@ -96,11 +97,11 @@ Each member writes down answers to 3 questions in the following format:
 10/14/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-   
+   Learn about Material Design
 2.To do until next Scrum:
-    
+    Learn about DB first approach in EF
 3.Need assistance / figure things out
-
+Using LINQ or sql in c#
 
 
 10/14/2022 Liutsiia
@@ -126,9 +127,10 @@ Each member writes down answers to 3 questions in the following format:
 10/15/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-   
+   Learn about DB first approach in EF
 2.To do until next Scrum:
-    
+   Learn about Creating a custom input dialog
+   add a customer into DB
 3.Need assistance / figure things out
 
 
@@ -155,9 +157,11 @@ Each member writes down answers to 3 questions in the following format:
 10/16/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-   
+   Learn about Creating a custom input dialog
+add a customer into DB
 2.To do until next Scrum:
-    
+  Learn about Creating a custom input dialog
+  continue adding data into customer
 3.Need assistance / figure things out
 
 
