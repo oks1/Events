@@ -27,6 +27,8 @@ namespace Events
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public decimal WagePerProject { get; set; }
+        public int PhotoId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventDetail> EventDetails { get; set; }

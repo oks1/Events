@@ -24,11 +24,12 @@ namespace Events
         public string TypeOfEvent { get; set; }
         public int CustomerId { get; set; }
         public int StaffId { get; set; }
-        public string Title { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
         public int LocationId { get; set; }
         public string Notes { get; set; }
+        public int Duration { get; set; }
+        public System.DateTime Date { get; set; }
+        public int Guests { get; set; }
+        public decimal TotalAmount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service> Services { get; set; }

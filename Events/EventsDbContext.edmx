@@ -11,7 +11,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
@@ -23,10 +23,11 @@
           <Property Name="TypeOfEvent" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="StaffId" Type="int" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="StartDate" Type="date" Nullable="false" />
-          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Guests" Type="int" Nullable="false" />
           <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Notes" Type="nvarchar" MaxLength="550" />
         </EntityType>
         <EntityType Name="Locations">
@@ -39,6 +40,7 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PricePerPerson" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -47,6 +49,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventId" Type="int" Nullable="false" />
           <Property Name="ServiceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PricePerHour" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -59,16 +62,30 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="WagePerProject" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="PhotoId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_EventDetails_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
           <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
+            <Principal Role="Locations">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="EventDetails">
-              <PropertyRef Name="CustomerId" />
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventDetails_Locations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+          <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventDetails">
+              <PropertyRef Name="LocationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -103,7 +120,11 @@
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_EventDetails_Customer" Association="Self.FK_EventDetails_Customer">
-            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="EventDetails" EntitySet="EventDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventDetails_Locations" Association="Self.FK_EventDetails_Locations">
+            <End Role="Locations" EntitySet="Locations" />
             <End Role="EventDetails" EntitySet="EventDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_EventDetails_Staff" Association="Self.FK_EventDetails_Staff">
@@ -125,10 +146,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="EventDetails" Relationship="EventsDbModel.FK_EventDetails_Customer1" FromRole="Customer" ToRole="EventDetail" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="EventsDbConnection1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
@@ -161,15 +182,16 @@
           <Property Name="TypeOfEvent" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
           <Property Name="StaffId" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="LocationId" Type="Int32" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Services" Relationship="EventsDbModel.FK_Services_Services" FromRole="EventDetail" ToRole="Service" />
           <NavigationProperty Name="Location" Relationship="EventsDbModel.FK_EventDetails_Customer" FromRole="EventDetail" ToRole="Location" />
           <NavigationProperty Name="Customer" Relationship="EventsDbModel.FK_EventDetails_Customer1" FromRole="EventDetail" ToRole="Customer" />
           <NavigationProperty Name="Staff" Relationship="EventsDbModel.FK_EventDetails_Staff" FromRole="EventDetail" ToRole="Staff" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Guests" Type="Int32" Nullable="false" />
+          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -182,6 +204,7 @@
           <Property Name="ContactName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EventDetails" Relationship="EventsDbModel.FK_EventDetails_Customer" FromRole="Location" ToRole="EventDetail" />
+          <Property Name="PricePerPerson" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -191,6 +214,7 @@
           <Property Name="EventId" Type="Int32" Nullable="false" />
           <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EventDetail" Relationship="EventsDbModel.FK_Services_Services" FromRole="Service" ToRole="EventDetail" />
+          <Property Name="PricePerHour" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -204,6 +228,8 @@
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EventDetails" Relationship="EventsDbModel.FK_EventDetails_Staff" FromRole="Staff" ToRole="EventDetail" />
+          <Property Name="WagePerProject" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="PhotoId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Services_Services">
           <End Type="EventsDbModel.EventDetail" Role="EventDetail" Multiplicity="1" />
@@ -262,9 +288,9 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="EventsDbModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
@@ -273,11 +299,12 @@
           <EntitySetMapping Name="EventDetails">
             <EntityTypeMapping TypeName="EventsDbModel.EventDetail">
               <MappingFragment StoreEntitySet="EventDetails">
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Guests" ColumnName="Guests" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="StaffId" ColumnName="StaffId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="TypeOfEvent" ColumnName="TypeOfEvent" />
@@ -288,6 +315,7 @@
           <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="EventsDbModel.Location">
               <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="PricePerPerson" ColumnName="PricePerPerson" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -300,6 +328,7 @@
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="EventsDbModel.Service">
               <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="PricePerHour" ColumnName="PricePerHour" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -309,6 +338,8 @@
           <EntitySetMapping Name="Staffs">
             <EntityTypeMapping TypeName="EventsDbModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+                <ScalarProperty Name="WagePerProject" ColumnName="WagePerProject" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
