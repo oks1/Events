@@ -55,10 +55,13 @@ Each member writes down answers to 3 questions in the following format:
 10/13/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+  Worked on the tables in the database and their relationships
+  Fixed some bugs with the connecting to the databse
 2.To do until next Scrum:
-    
+  Learn about Azure Storage Blob
+  Get a Azure storage account
 3.Need assistance / figure things out
+  Upload photo to azure storage account
 
 
 
@@ -86,16 +89,15 @@ Start work on the main Window
 Dialog windows
 
 
-
-
 10/14/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+  Created azure storage and tested it with txt file 
 2.To do until next Scrum:
-    
+  Work on the code begind for events
+  Learn about join tables in azure db  
 3.Need assistance / figure things out
-
+  Displaying the info from join tables in the event listview
 
 
 10/14/2022 Oxana
@@ -122,10 +124,12 @@ Navigation Rail on Main window
 10/15/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+  still trying to display the list of events and add an event 
 2.To do until next Scrum:
-    
+  get the list of events displayed on the mainwindow
+  and write the code for adding an event  
 3.Need assistance / figure things out
+ Displaying the data from join tables in the event listview
 
 
 
