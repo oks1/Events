@@ -4,9 +4,197 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Events"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
+        mc:Ignorable="d"
+        Title="Event" Height="582" Width="1085">
+    <Grid Background="#FFEDF9">
+        <materialDesign:Card>
+            <TabControl
+    VerticalContentAlignment="Center"
+    materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+    Style="{StaticResource MaterialDesignNavigationRailTabControl}">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="AccountGroup" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Customers" />
+                        </StackPanel>
+                    </TabItem.Header>
+                        <ListView x:Name="LvCustomers"
+  ItemsSource="{Binding Items1}" Margin="0,0,0,0" Width="1000" VerticalAlignment="Top" Height="400">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding Name}"
+        Header="Name" />
+                                    <GridViewColumn
+        DisplayMemberBinding="{Binding Email}"
+        Header="Email" />
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding Phone}"
+        Header="Phone" />
+                                    <GridViewColumn         
+         DisplayMemberBinding="{Binding Address}"
+        Header="Address" />
+                                    
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto" RenderTransformOrigin="0.5,0">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="PartyPopper" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Events" />
+                        </StackPanel>
+                    </TabItem.Header>
+                      <Grid>
+                        <ListView x:Name="LvEvents"
+  ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding TypeOfEvent}"
+        Header="Type" />
+                                    <GridViewColumn 
+        DisplayMemberBinding="{Binding CustomerId}"
+        Header="Customer" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding StaffId}"
+        Header="Staff" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding LocationId}"
+        Header="Location" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Guests}"
+        Header="Guests" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Date}"
+        Header="Date" />
+                                    <GridViewColumn 
+        
+         DisplayMemberBinding="{Binding Duration}"
+        Header="Duration" />
+                                    <GridViewColumn
+        
+         DisplayMemberBinding="{Binding TotalAmount}"
+        Header="Amount" />
+                                    <GridViewColumn
+        
+         DisplayMemberBinding="{Binding Notes}"
+        Header="Notes" />
+
+
+
+                                </GridView>
+                            </ListView.View>
+
+                        </ListView>
+                            <Button x:Name="BtnAddEvent" Content="Add" Margin="100,409,4,58" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100"/>
+                        <Button x:Name="BtnDeleteEvent" Content="Delete" Margin="0,409,0,58" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100"/>
+                        <Button x:Name="BtnUpdateEvent"  Content="Update" Margin="100,409,100,58" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100"/>
+
+                        </Grid>
+                  
+   
+
+    </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="MapMarker" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Locations" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+        <Run
+          Text="tab 3 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+                    </TextBlock>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="ToolboxOutline" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Services" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+        <Run
+          Text="tab 4 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+                    </TextBlock>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="AccountBoxOutline" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Staffs" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+        <Run
+          Text="tab 1 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+        <Run
+          FontStyle="Italic">
+        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+      </Run>
+                    </TextBlock>
+                </TabItem>
+                <Button Content="Button"/>
+            </TabControl>
+        </materialDesign:Card>
+       
     </Grid>
 </Window>
