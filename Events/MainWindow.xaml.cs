@@ -93,7 +93,14 @@ namespace Events
 
         private void BtnDeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
+            Customer currSelCustomer = LvCustomers.SelectedItem as Customer;
+            if (currSelCustomer == null) return;
+            var result = MessageBox.Show(this, "Are you sure you want to delete this Customer?", "Confirm deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes) return;
 
+            Globals.DbContext.Customers.Remove(currSelCustomer);
+            Globals.DbContext.SaveChanges();
+            LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList();
         }
 
         private void BtnAddEvent_Click(object sender, RoutedEventArgs e)
@@ -226,6 +233,7 @@ namespace Events
             if (dialog.ShowDialog() == true)
             {
                 LvEventsOfCustomer.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
+                LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
 
             }
         }
