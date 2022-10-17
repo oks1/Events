@@ -81,6 +81,9 @@
     <Compile Include="AddUpdateEventDlg.xaml.cs">
       <DependentUpon>AddUpdateEventDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddUpdateStaffDlg.xaml.cs">
+      <DependentUpon>AddUpdateStaffDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EventDetail.cs">
       <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddUpdateEventDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddUpdateStaffDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

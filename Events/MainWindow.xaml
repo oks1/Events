@@ -297,9 +297,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddStaff" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddStaff" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2" Click="BtnAddStaff_Click"/>
                         <Button x:Name="BtnDeleteStaff" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateStaff"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateStaff"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2" Click="BtnUpdateStaff_Click"/>
                     </Grid>
                 </TabItem>
                 <TabItem>

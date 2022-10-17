@@ -36,6 +36,9 @@ namespace Events
 
                 Globals.DbContext = new EventsDbConnection1();
                 LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
+
+                Globals.DbContext = new EventsDbConnection1();
+                LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList(); // equivalent of SELECT * FROM Events
             }
             catch (SystemException ex)
             {
@@ -95,7 +98,7 @@ namespace Events
             if (dialog.ShowDialog() == true)
             {
 
-                LvEvents.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM people
+                LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM people
 
                 Console.WriteLine("Event was added");
 
@@ -118,6 +121,39 @@ namespace Events
             if (dialog.ShowDialog() == true)
             {
                 LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
+
+            }
+        }
+
+        private void BtnAddStaff_Click(object sender, RoutedEventArgs e)
+        {
+            AddUpdateStaffDlg dialog = new AddUpdateStaffDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+
+                LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList(); // equivalent of SELECT * FROM people
+
+                Console.WriteLine("Staff was added");
+
+            }
+        }
+
+        private void BtnUpdateStaff_Click(object sender, RoutedEventArgs e)
+        {
+            Staff currSelStaff = LvStaffs.SelectedItem as Staff;
+            if (currSelStaff == null) return; // nothing selected
+            Console.WriteLine("currSelStaff: " + currSelStaff.Name);
+
+
+            AddUpdateStaffDlg dialog = new AddUpdateStaffDlg(currSelStaff);
+
+            dialog.Owner = this;
+            // modal = parent is not accessible for input while dialog is shown
+            if (dialog.ShowDialog() == true)
+            {
+                LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList(); // equivalent of SELECT * FROM Customers
 
             }
         }

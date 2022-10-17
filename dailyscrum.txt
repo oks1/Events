@@ -156,11 +156,12 @@ Navigation Rail on Main window
 10/16/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+finfished the task with displaying the list of events and adding an event
+the events can also be updated 
 2.To do until next Scrum:
-    
+  wirk on the code behind for other dialogs (staff and location)  
 3.Need assistance / figure things out
-
+need assistance with uploading images to db and then to azure blob 
 
 
 10/16/2022 Oxana
