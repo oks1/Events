@@ -38,7 +38,11 @@ namespace Events
                 LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
 
                 Globals.DbContext = new EventsDbConnection1();
-                LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList(); // equivalent of SELECT * FROM Events
+                LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList(); // equivalent of SELECT * FROM Staffs
+
+                Globals.DbContext = new EventsDbConnection1();
+                LvLocations.ItemsSource = Globals.DbContext.Locations.ToList(); // equivalent of SELECT * FROM Locations
+
             }
             catch (SystemException ex)
             {
@@ -155,6 +159,45 @@ namespace Events
                 LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList(); // equivalent of SELECT * FROM Customers
 
             }
+        }
+
+        private void BtnAddLocation_Click(object sender, RoutedEventArgs e)
+        {
+            AddUpdateLocationDlg dialog = new AddUpdateLocationDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+
+                LvLocations.ItemsSource = Globals.DbContext.Locations.ToList(); // equivalent of SELECT * FROM people
+
+                Console.WriteLine("Location was added");
+
+            }
+        }
+
+        private void BtnUpdateLocation_Click(object sender, RoutedEventArgs e)
+        {
+            Location currSelLocation = LvLocations.SelectedItem as Location;
+            if (currSelLocation == null) return; // nothing selected
+            Console.WriteLine("currSelLocation: " + currSelLocation.Name);
+
+
+            AddUpdateLocationDlg dialog = new AddUpdateLocationDlg(currSelLocation);
+
+            dialog.Owner = this;
+            // modal = parent is not accessible for input while dialog is shown
+            if (dialog.ShowDialog() == true)
+            {
+                LvLocations.ItemsSource = Globals.DbContext.Locations.ToList(); // equivalent of SELECT * FROM Customers
+
+            }
+        }
+
+        private void BtnCloseMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+
         }
     }
 }
