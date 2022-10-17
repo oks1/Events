@@ -5,39 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Events"
         mc:Ignorable="d"
-        Title="AddUpdateEventDlg" Height="460" Width="600">
+        Title="AddUpdateEventDlg" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         Height="300" Width="800"   
+        ResizeMode="CanResize" 
+        BorderBrush="#FFBC1A51"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="False">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="7"/>
+    </WindowChrome.WindowChrome>
+
     <Grid>
-        <Label Content="TypeOfEvent" HorizontalAlignment="Left" Margin="33,33,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="ComboTypes" SelectedValuePath="Content" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" Width="177">
-            <ComboBoxItem Content = "Wedding" />
-            <ComboBoxItem Content = "Birthday" />
-            <ComboBoxItem Content = "Anniversary" />
-        </ComboBox>
-        <Label Content="CustomerId" HorizontalAlignment="Left" Margin="33,74,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbxCustomer" HorizontalAlignment="Left" Margin="208,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" />
 
-        <Label Content="LocationId" HorizontalAlignment="Left" Margin="33,293,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbxLocation" HorizontalAlignment="Left" Margin="208,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" />
+        <Grid Height="30" VerticalAlignment="Top" Background="#FFE91E63">
+            <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">Event</TextBlock>
+        </Grid>
+        <Grid Margin="10,35,10,55">
+            <Label Content="TypeOfEvent" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox Name="ComboTypes" SelectedValuePath="Content" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Width="177"   materialDesign:HintAssist.Hint="Search"
+  materialDesign:HintAssist.HintOpacity=".26"
+  materialDesign:ComboBoxAssist.MaxLength="2"
+  IsEditable="True">
+                <ComboBoxItem Content = "Wedding" />
+                <ComboBoxItem Content = "Birthday" />
+                <ComboBoxItem Content = "Anniversary" />
+            </ComboBox>
+            <Label Content="CustomerId" HorizontalAlignment="Left" Margin="40,45,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxCustomer" HorizontalAlignment="Left" Margin="200,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" />
 
-        <Label Content="Duration" HorizontalAlignment="Left" Margin="33,161,0,0" VerticalAlignment="Top" Width="120"/>
-        <Slider Name="SliderDur" IsSnapToTickEnabled="True" HorizontalAlignment="Center" Margin="0,161,0,0" VerticalAlignment="Top" Width="176" TickPlacement="BottomRight" Value="0" TickFrequency="1" Minimum="0" Maximum="24" SelectionEnd="24"/>
-        <TextBox x:Name="TbxSliderDur" HorizontalAlignment="Left" Margin="158,159,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.493,-0.231" Text="{Binding StringFormat={}{0:0}, ElementName=SliderDur, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="LocationId" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxLocation" HorizontalAlignment="Left" Margin="200,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" />
 
-        <Label Content="Date" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" Width="120"/>
-        <DatePicker Name="TbxDate" HorizontalAlignment="Left" Margin="208,0,0,0" Width="173"/>
+            <Label Content="Duration" HorizontalAlignment="Left" Margin="40,115,0,0" VerticalAlignment="Top" Width="120"/>
+            <Slider Name="SliderDur" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="230,115,0,0" VerticalAlignment="Top" Width="150" TickPlacement="BottomRight" Value="0" TickFrequency="1" Minimum="0" Maximum="24" SelectionEnd="24"/>
+            <TextBox x:Name="TbxSliderDur" HorizontalAlignment="Left" Margin="200,115,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.493,-0.231" Text="{Binding StringFormat={}{0:0}, ElementName=SliderDur, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Content="Guests" HorizontalAlignment="Left" Margin="33,249,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbxGuests" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Margin="208,249,0,0"/>
+            <Label Content="Date" HorizontalAlignment="Left" Margin="40,150,0,0" VerticalAlignment="Top" Width="120"/>
+            <DatePicker Name="TbxDate" HorizontalAlignment="Left" Margin="200,150,0,0" Width="173" VerticalAlignment="Top"/>
 
-        <Label Content="StaffId" HorizontalAlignment="Left" Margin="33,116,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbxStaff" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Margin="208,116,0,0"/>
+            <Label Content="Guests" HorizontalAlignment="Left" Margin="440,10,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxGuests" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Margin="560,10,0,0"/>
 
-        <Label Content="Total Amount" HorizontalAlignment="Left" Margin="33,336,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TbxTotal" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="176" Margin="208,335,0,0"/>
+            <Label Content="StaffId" HorizontalAlignment="Left" Margin="440,45,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxStaff" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Margin="560,45,0,0"/>
 
-        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="208,382,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="369,382,0,0" VerticalAlignment="Top" Width="92"/>
+            <Label Content="Note" HorizontalAlignment="Left" Margin="440,80,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxNote" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Height="60" MaxLength="100" Margin="560,80,0,0"/>
 
+            <Label Content="Total Amount" HorizontalAlignment="Left" Margin="440,150,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxTotal" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="176" Margin="560,150,0,0"/>
+        </Grid>
+        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
 
     </Grid>
 </Window>
