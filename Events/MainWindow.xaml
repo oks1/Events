@@ -62,9 +62,9 @@
                                  </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddEvent" Content="Add" Margin="100,409,0,0" Click="BtnAddCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteEvent" Content="Delete" Margin="0,409,0,0" Click="BtnDeleteCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateEvent"  Content="Update" Margin="0,409,100,0" Click="BtnUpdateCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddCustomer" Content="Add" Margin="100,409,0,0" Click="BtnAddCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0" Click="BtnDeleteCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0" Click="BtnUpdateCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
@@ -112,7 +112,7 @@
         Header="Guests" />
                                     <GridViewColumn 
         
-         DisplayMemberBinding="{Binding Date}"
+         DisplayMemberBinding="{Binding Date, StringFormat='yyyy-MM-dd'}"
         Header="Date" />
                                     <GridViewColumn 
         
@@ -128,9 +128,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddCustomer" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddEvent" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2" Click="BtnAddEvent_Click"/>
+                        <!--<Button x:Name="BtnDeleteEvent" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>-->
+                        <Button x:Name="BtnUpdateEvent"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2" Click="BtnUpdateEvent_Click"/>
                     </Grid>
                 </TabItem>
                 <TabItem>

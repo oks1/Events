@@ -31,6 +31,8 @@ namespace Events
                 TbxEmail.Text = currCust.Email;
                 TbxPhone.Text = currCust.Phone;
                 btSave.Content = "Update";
+
+
             }
             else
             {

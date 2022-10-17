@@ -33,6 +33,9 @@ namespace Events
                 //Customers
                 Globals.DbContext = new EventsDbConnection1();
                 LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
+
+                Globals.DbContext = new EventsDbConnection1();
+                LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
             }
             catch (SystemException ex)
             {
@@ -81,6 +84,42 @@ namespace Events
         private void BtnDeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnAddEvent_Click(object sender, RoutedEventArgs e)
+        {
+
+            AddUpdateEventDlg dialog = new AddUpdateEventDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+
+                LvEvents.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM people
+
+                Console.WriteLine("Event was added");
+
+            }
+
+            
+        }
+
+        private void BtnUpdateEvent_Click(object sender, RoutedEventArgs e)
+        {
+            EventDetail currSelEvent = LvEvents.SelectedItem as EventDetail;
+            if (currSelEvent == null) return; // nothing selected
+            Console.WriteLine("currSelEvent: " + currSelEvent.TypeOfEvent);
+
+
+            AddUpdateEventDlg dialog = new AddUpdateEventDlg(currSelEvent);
+
+            dialog.Owner = this;
+            // modal = parent is not accessible for input while dialog is shown
+            if (dialog.ShowDialog() == true)
+            {
+                LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
+
+            }
         }
     }
 }
