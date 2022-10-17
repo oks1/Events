@@ -7,7 +7,11 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
         mc:Ignorable="d"  Loaded="Window_Loaded"
-        Title="Event" Height="582" Width="1085" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+        Title="Event" Height="582" Width="1085" WindowStartupLocation="CenterScreen" 
+        ResizeMode="CanResize" WindowStyle="None" AllowsTransparency="False">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="7"/>
+    </WindowChrome.WindowChrome>
    
         <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="#FFE91E63">
