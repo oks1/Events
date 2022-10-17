@@ -200,17 +200,17 @@ namespace Events
 
         }
 
-        private void BtnCloseMainWindow_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
+ 
         private void LvCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            Customer currSelTask = LvCustomers.SelectedItem as Customer;      
-            Customer cust = Globals.DbContext.Customers.Find(currSelTask.Id);
-            LvEventsOfCustomer.ItemsSource = cust.EventDetails.ToList();
+            Customer currSelTask = LvCustomers.SelectedItem as Customer;     
+            if (currSelTask != null) 
+            {
+                Customer cust = Globals.DbContext.Customers.Find(currSelTask.Id);
+                LvEventsOfCustomer.ItemsSource = cust.EventDetails.ToList();
+
+            }
 
         }
     }
