@@ -66,14 +66,14 @@
           <Property Name="PhotoId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_EventDetails_Customer">
-          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Locations">
+            <Principal Role="Customer">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="EventDetails">
-              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="CustomerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -120,7 +120,7 @@
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_EventDetails_Customer" Association="Self.FK_EventDetails_Customer">
-            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Customer" EntitySet="Customer" />
             <End Role="EventDetails" EntitySet="EventDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_EventDetails_Locations" Association="Self.FK_EventDetails_Locations">

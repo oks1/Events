@@ -62,7 +62,6 @@ namespace Events
             if (dialog.ShowDialog() == true)
             {
                 LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
-             
             }
         }
 
