@@ -16,11 +16,11 @@
         <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="#FFE91E63">
             <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">HappyEvent Planner</TextBlock>
-            <Button x:Name="BtnCloseMainWindow" Height="70" Width="70" Margin="1016,0,0,0" Padding="0" Click="BtnCloseMainWindow_Click" Background="#FFE91E63" >
+            <Button x:Name="BtnCloseMainWindow" Height="70" Width="70" Margin="1016,0,-1,0" Padding="0" Click="BtnCloseMainWindow_Click" Background="#FFE91E63" VerticalAlignment="Bottom" >
                 <materialDesign:PackIcon Kind="Power"/>
             </Button>
         </Grid>
-        
+
         <!--Customers-->
 
         <materialDesign:Card Margin="0,69,0,0">
@@ -50,8 +50,9 @@
                             <RowDefinition Height="416*"/>
                             <RowDefinition Height="81*"/>
                         </Grid.RowDefinitions>
-                        <ListView x:Name="LvCustomers"
-  ItemsSource="{Binding Items1}" Width="1000" VerticalAlignment="Top" HorizontalAlignment="Center" Height="360" Background="#FFFFEDF9">
+                        <ListView x:Name="LvCustomers" 
+  ItemsSource="{Binding Items1}" Width="506" VerticalAlignment="Top" HorizontalAlignment="Left" Height="355" Background="#FFFFEDF9"
+                                  SelectionChanged="LvCustomers_SelectionChanged" SelectionMode="Single">
                             <ListView.View>
                                 <GridView>
 
@@ -69,12 +70,27 @@
         
          DisplayMemberBinding="{Binding Address}"
         Header="Address" />
-                                 </GridView>
+                                </GridView>
                             </ListView.View>
                         </ListView>
                         <Button x:Name="BtnAddCustomer" Content="Add" Margin="100,409,0,0" Click="BtnAddCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
                         <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0" Click="BtnDeleteCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
                         <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0" Click="BtnUpdateCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <ListView x:Name="LvEventsOfCustomer" SelectionMode="Single" 
+                            ItemsSource="{Binding Items1}" Width="394" VerticalAlignment="Top" HorizontalAlignment="Left" Height="227" Background="#FFFFEDF9" Margin="559,41,0,0">
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn  DisplayMemberBinding="{Binding Id}"   Header="ID"  Width="80" />
+                                    <GridViewColumn  DisplayMemberBinding="{Binding TypeOfEvent}" Header="TypeOfEvent"  Width="150"/>
+                                    <GridViewColumn  DisplayMemberBinding="{Binding Date}" Header="Date"  Width="180"/>
+
+
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Label Content="Customer's events:" HorizontalAlignment="Left" Margin="686,12,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     </Grid>
                 </TabItem>
                 <TabItem>
@@ -226,7 +242,7 @@
                                     <GridViewColumn 
         DisplayMemberBinding="{Binding Name}"
         Header="Name" />
-                                                                     
+
                                     <GridViewColumn 
         
          DisplayMemberBinding="{Binding EventId}"
@@ -289,7 +305,7 @@
         
          DisplayMemberBinding="{Binding Phone}"
         Header="Phone" />
-                                <GridViewColumn 
+                                    <GridViewColumn 
         
          DisplayMemberBinding="{Binding Address}"
         
@@ -342,5 +358,5 @@
         </materialDesign:Card>
 
     </Grid>
-  
+
 </Window>

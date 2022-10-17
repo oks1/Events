@@ -29,7 +29,7 @@ namespace Events
                 TbxName.Text = currentStaff.Name;
                 TbxTitle.Text = currentStaff.JobTitle;
                 TbxEmail.Text = currentStaff.Email;
-                TbxPassword.Text = currentStaff.Password;
+                TbxPassword.Password = currentStaff.Password;
                 TbxPhone.Text = currentStaff.Phone;
                 TbxAddress.Text = currentStaff.Address;
                 TbxWage.Text = currentStaff.WagePerProject.ToString();
@@ -54,7 +54,7 @@ namespace Events
                     currentStaff.Name = TbxName.Text;
                     currentStaff.JobTitle = TbxTitle.Text;
                     currentStaff.Email = TbxEmail.Text;
-                    currentStaff.Password = TbxPassword.Text;
+                    currentStaff.Password = TbxPassword.Password;
                     currentStaff.Phone = TbxPhone.Text;
                     currentStaff.Address = TbxAddress.Text;
                     currentStaff.WagePerProject = int.Parse(TbxWage.Text);
@@ -66,7 +66,7 @@ namespace Events
                     string name = TbxName.Text;
                     string title = TbxTitle.Text;
                     string email = TbxEmail.Text;
-                    string password = TbxPassword.Text;
+                    string password = TbxPassword.Password;
                     string phone = TbxPhone.Text;
                     string address = TbxAddress.Text;
                     int wage = int.Parse(TbxWage.Text);
@@ -99,7 +99,7 @@ namespace Events
             TbxName.Text = "";
             TbxTitle.Text = "";
            TbxEmail.Text = "";
-            TbxPassword.Text = "";
+            TbxPassword.Password = "";
             TbxPhone.Text = ""; 
             TbxAddress.Text = "";
             TbxWage.Text = "";
