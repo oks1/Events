@@ -198,13 +198,7 @@ namespace Events
             }
         }
 
-        private void BtnCloseMainWindow_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-
-        }
-
- 
+    
         private void LvCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -216,6 +210,24 @@ namespace Events
 
             }
 
+        }
+
+        private void LvEventsOfCustomer_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            EventDetail currSelEvent = LvEventsOfCustomer.SelectedItem as EventDetail;
+            if (currSelEvent == null) return; // nothing selected
+            Console.WriteLine("currSelEvent: " + currSelEvent.TypeOfEvent);
+
+
+            AddUpdateEventDlg dialog = new AddUpdateEventDlg(currSelEvent);
+
+            dialog.Owner = this;
+            // modal = parent is not accessible for input while dialog is shown
+            if (dialog.ShowDialog() == true)
+            {
+                LvEventsOfCustomer.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
+
+            }
         }
     }
 }

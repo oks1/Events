@@ -78,7 +78,7 @@
                         <Button x:Name="BtnAddCustomer" Content="Add" Margin="100,409,0,0" Click="BtnAddCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
                         <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0" Click="BtnDeleteCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
                         <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0" Click="BtnUpdateCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <ListView x:Name="LvEventsOfCustomer" SelectionMode="Single" 
+                        <ListView x:Name="LvEventsOfCustomer" SelectionMode="Single" MouseDoubleClick="LvEventsOfCustomer_MouseDoubleClick"
                             ItemsSource="{Binding Items1}" Width="394" VerticalAlignment="Top" HorizontalAlignment="Left" Height="315" Background="#FFFFEDF9" Margin="603,54,0,0">
                             <ListView.View>
                                 <GridView>
