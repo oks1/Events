@@ -12,8 +12,8 @@
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="7"/>
     </WindowChrome.WindowChrome>
-   
-        <Grid>
+
+    <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="#FFE91E63">
             <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">HappyEvent Planner</TextBlock>
             <Button x:Name="BtnCloseMainWindow" Height="70" Width="70" Margin="1016,0,-1,0" Padding="0" Click="BtnCloseMainWindow_Click" Background="#FFE91E63" VerticalAlignment="Bottom" >
@@ -50,9 +50,11 @@
                             <RowDefinition Height="416*"/>
                             <RowDefinition Height="81*"/>
                         </Grid.RowDefinitions>
+                        <Label Content="Customers:" HorizontalAlignment="Left" Margin="162,8,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+
                         <ListView x:Name="LvCustomers" 
-  ItemsSource="{Binding Items1}" Width="506" VerticalAlignment="Top" HorizontalAlignment="Left" Height="355" Background="#FFFFEDF9"
-                                  SelectionChanged="LvCustomers_SelectionChanged" SelectionMode="Single">
+  ItemsSource="{Binding Items1}" Width="530" VerticalAlignment="Top" HorizontalAlignment="Left" Height="315" Background="#FFFFEDF9"
+                                  SelectionChanged="LvCustomers_SelectionChanged" SelectionMode="Single" Margin="16,54,0,0">
                             <ListView.View>
                                 <GridView>
 
@@ -77,20 +79,20 @@
                         <Button x:Name="BtnDeleteCustomer" Content="Delete" Margin="0,409,0,0" Click="BtnDeleteCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
                         <Button x:Name="BtnUpdateCustomer"  Content="Update" Margin="0,409,100,0" Click="BtnUpdateCustomer_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
                         <ListView x:Name="LvEventsOfCustomer" SelectionMode="Single" 
-                            ItemsSource="{Binding Items1}" Width="394" VerticalAlignment="Top" HorizontalAlignment="Left" Height="227" Background="#FFFFEDF9" Margin="559,41,0,0">
+                            ItemsSource="{Binding Items1}" Width="394" VerticalAlignment="Top" HorizontalAlignment="Left" Height="315" Background="#FFFFEDF9" Margin="603,54,0,0">
                             <ListView.View>
                                 <GridView>
 
-                                    <GridViewColumn  DisplayMemberBinding="{Binding Id}"   Header="ID"  Width="80" />
-                                    <GridViewColumn  DisplayMemberBinding="{Binding TypeOfEvent}" Header="TypeOfEvent"  Width="150"/>
-                                    <GridViewColumn  DisplayMemberBinding="{Binding Date}" Header="Date"  Width="180"/>
+                                    <GridViewColumn  DisplayMemberBinding="{Binding Id}"   Header="ID"  />
+                                    <GridViewColumn  DisplayMemberBinding="{Binding TypeOfEvent}" Header="TypeOfEvent"  />
+                                    <GridViewColumn  DisplayMemberBinding="{Binding Date}" Header="Date" />
 
 
 
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Label Content="Customer's events:" HorizontalAlignment="Left" Margin="686,12,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                        <Label Content="Customer's events:" HorizontalAlignment="Left" Margin="686,14,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
                     </Grid>
                 </TabItem>
                 <TabItem>

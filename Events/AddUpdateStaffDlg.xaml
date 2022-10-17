@@ -39,7 +39,7 @@
             <TextBox x:Name="TbxPhone" HorizontalAlignment="Left" Margin="560,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
             <Label Content="Wage Per Project" HorizontalAlignment="Left" Margin="440,100,0,0" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TbxWage" HorizontalAlignment="Left" Margin="565,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+            <TextBox x:Name="TbxWage" HorizontalAlignment="Left" Margin="559,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
             <Label Content="PhotoId" HorizontalAlignment="Left" Margin="440,140,0,0" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="TbxPhoto" HorizontalAlignment="Left" Margin="560,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
