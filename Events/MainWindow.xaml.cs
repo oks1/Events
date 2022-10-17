@@ -59,7 +59,6 @@ namespace Events
             if (dialog.ShowDialog() == true)
             {
                 LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
-             
             }
         }
 
@@ -120,6 +119,11 @@ namespace Events
                 LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
 
             }
+        }
+
+        private void BtnCloseMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

@@ -7,11 +7,17 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         
         mc:Ignorable="d"  Loaded="Window_Loaded"
-        Title="Event" Height="582" Width="1085">
-    <Grid>
+        Title="Event" Height="582" Width="1085" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+   
+        <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="#FFE91E63">
             <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">HappyEvent Planner</TextBlock>
+            <Button x:Name="BtnCloseMainWindow" Height="70" Width="70" Margin="1016,0,0,0" Padding="0" Click="BtnCloseMainWindow_Click" Background="#FFE91E63" >
+                <materialDesign:PackIcon Kind="Power"/>
+            </Button>
         </Grid>
+        
+        <!--Customers-->
 
         <materialDesign:Card Margin="0,69,0,0">
 
@@ -332,4 +338,5 @@
         </materialDesign:Card>
 
     </Grid>
+  
 </Window>
