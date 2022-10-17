@@ -5,38 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Events"
         mc:Ignorable="d"
-        Title="AddUpdateStaffDlg" Height="500" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="AddUpdateCustomerDlg" Height="300" Width="800"   
+        ResizeMode="CanResize" 
+        BorderBrush="#FFBC1A51"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="False">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="7"/>
+    </WindowChrome.WindowChrome>
+
     <Grid>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="99,36,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="TbxName" HorizontalAlignment="Left" Margin="284,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
 
-        <Label Content="Title" HorizontalAlignment="Left" Margin="98,85,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="TbxTitle" HorizontalAlignment="Left" Margin="284,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
+        <Grid Height="30" VerticalAlignment="Top" Background="#FFE91E63">
+            <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">Staff</TextBlock>
+        </Grid>
+        <Grid Margin="10,35,10,55">
+            <Label Content="Name" HorizontalAlignment="Left" Margin="40,20,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxName" HorizontalAlignment="Left" Margin="200,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
-        <Label Content="Email" HorizontalAlignment="Left" Margin="96,134,0,0" VerticalAlignment="Top" Width="102"/>
-        <TextBox x:Name="TbxEmail" HorizontalAlignment="Left" Margin="284,134,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="218"/>
+            <Label Content="Title" HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxTitle" HorizontalAlignment="Left" Margin="200,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
-        <Label Content="Password" HorizontalAlignment="Left" Margin="98,193,0,0" VerticalAlignment="Top" Width="102"/>
-        <TextBox x:Name="TbxPassword" HorizontalAlignment="Left" Margin="284,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="218"/>
+            <Label Content="Email" HorizontalAlignment="Left" Margin="40,100,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxEmail" HorizontalAlignment="Left" Margin="200,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
-        <Label Content="Address" HorizontalAlignment="Left" Margin="96,253,0,0" VerticalAlignment="Top" Width="117"/>
-        <TextBox x:Name="TbxAddress" HorizontalAlignment="Left" Margin="290,253,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212"/>
+            <Label Content="Password" HorizontalAlignment="Left" Margin="40,140,0,0" VerticalAlignment="Top" Width="120"/>
+            <PasswordBox x:Name="TbxPassword" materialDesign:TextFieldAssist.HasClearButton="True" materialDesign:HintAssist.HelperText="At least 8 characters" HorizontalAlignment="Left" Margin="200,140,0,0" Password=""  VerticalAlignment="Top" Width="177"/>
 
-        <Label Content="Phone" HorizontalAlignment="Left" Margin="98,316,0,0" VerticalAlignment="Top" Width="117"/>
-        <TextBox x:Name="TbxPhone" HorizontalAlignment="Left" Margin="284,315,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="224"/>
+            <Label Content="Address" HorizontalAlignment="Left" Margin="440,20,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxAddress" HorizontalAlignment="Left" Margin="560,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
-        <Label Content="WagePerProject" HorizontalAlignment="Left" Margin="99,375,0,0" VerticalAlignment="Top" Width="117"/>
-        <TextBox x:Name="TbxWage" HorizontalAlignment="Center" Margin="0,374,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="230"/>
-        
-        <Label Content="PhotoId" HorizontalAlignment="Left" Margin="606,36,0,0" VerticalAlignment="Top" Width="117"/>
-        <TextBox x:Name="TbxPhoto" HorizontalAlignment="Left" Margin="606,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="117"/>
+            <Label Content="Phone" HorizontalAlignment="Left" Margin="440,60,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxPhone" HorizontalAlignment="Left" Margin="560,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+
+            <Label Content="Wage Per Project" HorizontalAlignment="Left" Margin="440,100,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxWage" HorizontalAlignment="Left" Margin="559,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+
+            <Label Content="PhotoId" HorizontalAlignment="Left" Margin="440,140,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxPhoto" HorizontalAlignment="Left" Margin="560,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+
+        </Grid>
+
+        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
 
 
-        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="580,392,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="698,392,0,0" VerticalAlignment="Top" Width="92"/>
-       
-        
-       
-        
     </Grid>
 </Window>

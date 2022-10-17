@@ -51,6 +51,10 @@ namespace Events
             }
 
         }
+        private void BtnCloseMainWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
         private void BtnUpdateCustomer_Click(object sender, RoutedEventArgs e)
         {

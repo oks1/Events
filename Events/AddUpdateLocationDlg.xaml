@@ -5,31 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Events"
         mc:Ignorable="d"
-        Title="AddUpdateLocationDlg" Height="450" Width="800">
+        Title="AddUpdateLocationDlg" Height="300" Width="800"   
+        ResizeMode="CanResize" 
+        BorderBrush="#FFBC1A51"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="False">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="7"/>
+    </WindowChrome.WindowChrome>
+
     <Grid>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="99,36,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="TbxName" HorizontalAlignment="Left" Margin="284,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213"/>
 
-        <Label Content="Email" HorizontalAlignment="Left" Margin="96,94,0,0" VerticalAlignment="Top" Width="102"/>
-        <TextBox x:Name="TbxEmail" HorizontalAlignment="Left" Margin="284,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="218"/>
+        <Grid Height="30" VerticalAlignment="Top" Background="#FFE91E63">
+            <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">Location</TextBlock>
+        </Grid>
+        <Grid Margin="10,35,10,55">
+            <Label Content="Name" HorizontalAlignment="Left" Margin="40,40,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxName" HorizontalAlignment="Left" Margin="200,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
-        <Label Content="Contact name" HorizontalAlignment="Left" Margin="97,163,0,0" VerticalAlignment="Top" Width="102"/>
-        <TextBox x:Name="TbxContact" HorizontalAlignment="Left" Margin="284,162,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="218"/>
+            <Label Content="Email" HorizontalAlignment="Left" Margin="40,90,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxEmail" HorizontalAlignment="Left" Margin="200,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
-
-        <Label Content="Phone" HorizontalAlignment="Left" Margin="99,233,0,0" VerticalAlignment="Top" Width="117"/>
-        <TextBox x:Name="TbxPhone" HorizontalAlignment="Center" Margin="0,232,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="224"/>
-
-        <Label Content="Address" HorizontalAlignment="Left" Margin="99,291,0,0" VerticalAlignment="Top" Width="117"/>
-        <TextBox x:Name="TbxAddress" HorizontalAlignment="Left" Margin="290,291,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="212"/>
+            <Label Content="Contact name" HorizontalAlignment="Left" Margin="40,140,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxContact" HorizontalAlignment="Left" Margin="200,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
 
-        <Label Content="PricePerPerson" HorizontalAlignment="Left" Margin="99,357,0,0" VerticalAlignment="Top" Width="117"/>
-        <TextBox x:Name="TbxPrice" HorizontalAlignment="Center" Margin="0,356,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="230"/>
+            <Label Content="Phone" HorizontalAlignment="Left" Margin="440,40,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxPhone" HorizontalAlignment="Center" Margin="560,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+
+            <Label Content="Address" HorizontalAlignment="Left" Margin="440,90,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxAddress" HorizontalAlignment="Left" Margin="582,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="176"/>
 
 
-        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="580,392,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="698,392,0,0" VerticalAlignment="Top" Width="92"/>
+            <Label Content="Price Per Person" HorizontalAlignment="Left" Margin="440,140,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxPrice" HorizontalAlignment="Center" Margin="560,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+        </Grid>
+
+        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
+
 
     </Grid>
 </Window>
