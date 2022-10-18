@@ -189,10 +189,12 @@ add a customer into DB
 10/17/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+  Finished the code behind for add/update staff
+Finished the code behind for add/update location  
 2.To do until next Scrum:
-    
+  Figure out how to implement photo blob in our project  
 3.Need assistance / figure things out
+Assictance with linking the azure blob to our project
 
 
 
