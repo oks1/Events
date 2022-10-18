@@ -43,6 +43,8 @@ namespace Events
                 Globals.DbContext = new EventsDbConnection1();
                 LvLocations.ItemsSource = Globals.DbContext.Locations.ToList(); // equivalent of SELECT * FROM Locations
 
+                Globals.DbContext = new EventsDbConnection1();
+                LvServices.ItemsSource = Globals.DbContext.Services.ToList(); // equivalent of SELECT * FROM Services
             }
             catch (SystemException ex)
             {
@@ -205,7 +207,55 @@ namespace Events
             }
         }
 
-    
+        //Service
+
+        private void BtnUpdateService_Click(object sender, RoutedEventArgs e)
+        {
+            Service currSelService = LvServices.SelectedItem as Service;
+            if (currSelService == null) return; // nothing selected
+            Console.WriteLine("currSelService: " + currSelService.ServiceName);
+
+
+            AddUpdateServiceDlg dialog = new AddUpdateServiceDlg(currSelService);
+
+            dialog.Owner = this;
+            // modal = parent is not accessible for input while dialog is shown
+            if (dialog.ShowDialog() == true)
+            {
+                LvServices.ItemsSource = Globals.DbContext.Services.ToList(); // equivalent of SELECT * FROM Service
+            }
+        }
+
+        private void BtnAddService_Click(object sender, RoutedEventArgs e)
+        {
+
+            AddUpdateServiceDlg dialog = new AddUpdateServiceDlg();
+            dialog.Owner = this;
+
+            if (dialog.ShowDialog() == true)
+            {
+
+                LvServices.ItemsSource = Globals.DbContext.Services.ToList();
+
+                Console.WriteLine("Service was added");
+
+            }
+
+
+        }
+
+        private void BtnDeleteService_Click(object sender, RoutedEventArgs e)
+        {
+            Service currSelService = LvServices.SelectedItem as Service;
+            if (currSelService == null) return;
+            var result = MessageBox.Show(this, "Are you sure you want to delete this Service?", "Confirm deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes) return;
+
+            Globals.DbContext.Services.Remove(currSelService);
+            Globals.DbContext.SaveChanges();
+            LvServices.ItemsSource = Globals.DbContext.Services.ToList();
+        }
+        
         private void LvCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

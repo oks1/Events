@@ -242,7 +242,7 @@
                                 <GridView>
 
                                     <GridViewColumn 
-        DisplayMemberBinding="{Binding Name}"
+        DisplayMemberBinding="{Binding ServiceName}"
         Header="Name" />
 
                                     <GridViewColumn 
@@ -256,9 +256,9 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button x:Name="BtnAddService" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnDeleteService" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
-                        <Button x:Name="BtnUpdateService"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnAddService" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2" Click="BtnAddService_Click"/>
+                        <Button x:Name="BtnDeleteService" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2" Click="BtnDeleteService_Click"/>
+                        <Button x:Name="BtnUpdateService"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2" Click="BtnUpdateService_Click"/>
                     </Grid>
 
                 </TabItem>
