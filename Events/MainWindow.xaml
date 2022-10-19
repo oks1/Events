@@ -124,15 +124,15 @@
         DisplayMemberBinding="{Binding TypeOfEvent}"
         Header="Type" />
                                     <GridViewColumn 
-        DisplayMemberBinding="{Binding CustomerId}"
+        DisplayMemberBinding="{Binding Customer.Name}"
         Header="Customer" />
                                     <GridViewColumn 
         
-         DisplayMemberBinding="{Binding StaffId}"
+         DisplayMemberBinding="{Binding Staff.Name}"
         Header="Staff" />
                                     <GridViewColumn 
         
-         DisplayMemberBinding="{Binding LocationId}"
+         DisplayMemberBinding="{Binding Location.Name}"
         Header="Location" />
                                     <GridViewColumn 
         
@@ -245,10 +245,7 @@
         DisplayMemberBinding="{Binding ServiceName}"
         Header="Name" />
 
-                                    <GridViewColumn 
-        
-         DisplayMemberBinding="{Binding EventId}"
-        Header="Event" />
+                                   
                                     <GridViewColumn 
         
          DisplayMemberBinding="{Binding PricePerHour}"

@@ -18,13 +18,42 @@ namespace Events
     /// <summary>
     /// Interaction logic for AddUpdateEventDlg.xaml
     /// </summary>
+    /// 
+
+    
+
     public partial class AddUpdateEventDlg : Window
     {
         EventDetail currentEvent;
 
-        //public AddUpdateEventDlg()
-        //{
-        //}
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //Customers
+
+                Globals.DbContext = new EventsDbConnection1();
+
+                ComboCustomer.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
+                                                                                  // Console.Write(ComboCustomer.ItemsSource.ToString());
+                                                                                  //List<Customer> CustomerList = new List<Customer>();
+                                                                                  //int num = Globals.DbContext.Customers.ToList().Count;
+
+                //for (int i = 0; i < num; i++)
+                //{
+                //    ComboCustomer.Items.Add(ComboCustomer.Items[i]);
+                //     //   (Customer.Name[i]["itemname"].tostring());
+                //       // items.add(ComboCustomer.itemssource[i]["itemname"].tostring());
+                //}
+            }
+            catch (SystemException ex)
+            {
+                MessageBox.Show(this, "Unable to access the database:\n" + ex.Message, "Fatal database error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(1);
+            }
+
+        }
 
         public AddUpdateEventDlg(EventDetail currentEvent=null)
         {
@@ -35,6 +64,17 @@ namespace Events
             {
 
                 ComboTypes.SelectedValue = currentEvent.TypeOfEvent;
+                Customer currSelCust = ComboCustomer.SelectedValue as Customer;
+                Console.WriteLine(currSelCust.Name);
+                Customer customerID = Globals.DbContext.Customers.Find(currSelCust.Name);
+
+                //ComboCustomer.SelectedValue = customerID.Id;
+                currentEvent.CustomerId = customerID.Id;
+                //Customer currSelCust = ComboCustomer.SelectedValue as Customer;
+                //ComboCustomer.SelectedValue = currentEvent.Name;
+                //Customer customerID = Globals.DbContext.Customers.Find(currSelCust.Id);
+                //ComboCustomer.SelectedValue = currentEvent.CustomerId.ToString();
+                //ComboCustomer.SelectedValue = Globals.DbContext.Customers.Find(currSelCust.Id);
                 TbxCustomer.Text = currentEvent.CustomerId.ToString();
                 TbxStaff.Text = currentEvent.StaffId.ToString();
                 Console.WriteLine(TbxStaff.Text);
@@ -61,9 +101,10 @@ namespace Events
 
                 if (currentEvent != null)
                 {//update
-                    currentEvent.TypeOfEvent= ComboTypes.SelectedValue?.ToString(); 
-                   
-                    currentEvent.CustomerId = int.Parse(TbxCustomer.Text);
+                    currentEvent.TypeOfEvent= ComboTypes.SelectedValue?.ToString();
+
+                    //currentEvent.CustomerId = int.Parse(TbxCustomer.Text);
+                    //currentEvent.CustomerId = customerID.Id;
                     currentEvent.StaffId = int.Parse(TbxStaff.Text);
                     
                     currentEvent.Duration = (int)SliderDur.Value;
@@ -81,8 +122,13 @@ namespace Events
                 { //add
 
                     string typeOfEvent= ComboTypes.SelectedValue?.ToString();
-                    int customerId = int.Parse(TbxCustomer.Text);
-                   
+                    
+
+                    //Customer customID = Globals.DbContext.Customers.Find(customer);
+                    // Console.Write(customID);
+                    //int customerId = customID.Id;
+                    int customerId = int.Parse(ComboCustomer.SelectedValue?.ToString());
+
                     int staffId = int.Parse(TbxStaff.Text);
                     
                     int duration = (int)SliderDur.Value;
@@ -93,10 +139,10 @@ namespace Events
                     
                     int locationId = int.Parse(TbxLocation.Text);
                     decimal total = decimal.Parse(TbxTotal.Text);
-                    
-
-                    Globals.DbContext.EventDetails.Add(new EventDetail() { TypeOfEvent= typeOfEvent, CustomerId = customerId, StaffId = staffId, Duration=duration, Date=eventDate, Guests=guests, LocationId=locationId, TotalAmount=total
-                    });
+                    string note = TbxNote.Text;
+                    //string note = ComboCustomer.SelectedValue?.ToString();
+                    Globals.DbContext.EventDetails.Add(new EventDetail() { TypeOfEvent= typeOfEvent, CustomerId = customerId, StaffId = staffId, Duration=duration, Date=eventDate, Guests=guests, LocationId=locationId, TotalAmount=total,
+                    Notes=note});
 
                 }
 
@@ -128,6 +174,6 @@ namespace Events
 
         }
 
-        
+       
     }
 }

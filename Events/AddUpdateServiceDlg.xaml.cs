@@ -4,11 +4,15 @@ using System.Windows;
 
 namespace Events
 {
+
     /// <summary>
     /// Interaction logic for AddUpdateServiceDlg.xaml
     /// </summary>
+    /// 
+
     public partial class AddUpdateServiceDlg : Window
     {
+
         Service currService;
         public AddUpdateServiceDlg(Service currService = null)
         {
@@ -17,7 +21,6 @@ namespace Events
             if (currService != null)
             {
                 TbxName.Text = currService.ServiceName;
-                TbxEvent.Text = currService.EventId.ToString(); ;
                 TbxPrice.Text = currService.PricePerHour.ToString(); ;
                 btSave.Content = "Update";
 
@@ -42,20 +45,18 @@ namespace Events
                 if (currService != null)
                 {//update
                     currService.ServiceName = TbxName.Text;
-                    currService.EventId = int.Parse(TbxEvent.Text);
                     currService.PricePerHour = int.Parse(TbxPrice.Text);
 
                 }
                 else
                 { //add
                     string serviceName = TbxName.Text;
-                    int eventId = int.Parse(TbxEvent.Text);
                     decimal pricePerHour = int.Parse(TbxPrice.Text);
-                    Globals.DbContext.Services.Add(new Service() { ServiceName = serviceName, EventId = eventId, PricePerHour = pricePerHour });
+                    Globals.DbContext.Services.Add(new Service() { ServiceName = serviceName, PricePerHour = pricePerHour });
 
                 }
 
-                Globals.DbContext.SaveChanges(); 
+                Globals.DbContext.SaveChanges();
                 this.DialogResult = true; // dismiss the dialog
 
                 //    Console.WriteLine($"Customer name: {name}");
@@ -76,9 +77,10 @@ namespace Events
         private void ResetFields()
         {
             TbxName.Text = "";
-            TbxEvent.Text = "";
+          
             TbxPrice.Text = "";
-           
+
         }
     }
 }
+

@@ -23,12 +23,11 @@
             <Label Content="Name" HorizontalAlignment="Left" Margin="100,60,0,0" VerticalAlignment="Top"/>
 
             <TextBox x:Name="TbxName"  HorizontalAlignment="Left" Margin="100,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
-            <TextBox x:Name="TbxEvent" HorizontalAlignment="Left" Margin="300,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
             <TextBox x:Name="TbxPrice" HorizontalAlignment="Left" Margin="500,100,0,0" TextWrapping="Wrap" Text="" Width="154"  VerticalAlignment="Top"/>
-            <Label Content="Event ID" HorizontalAlignment="Left" Margin="300,60,0,0" VerticalAlignment="Top"/>
             <Label Content="Price per Hour" HorizontalAlignment="Left" Margin="500,60,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
         <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
+  
     </Grid>
 </Window>

@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Events"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="AddUpdateEventDlg" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
          Height="300" Width="800"   
         ResizeMode="CanResize" 
         BorderBrush="#FFBC1A51"
+    
         WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="False">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="7"/>
@@ -57,6 +59,18 @@
         </Grid>
         <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
         <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
-
+        <ComboBox Name="ComboCustomer"  HorizontalAlignment="Left" Margin="578,254,0,0" VerticalAlignment="Top" Width="177"   materialDesign:HintAssist.Hint="Search"
+  materialDesign:HintAssist.HintOpacity=".26"
+  materialDesign:ComboBoxAssist.MaxLength="2"
+            IsEditable="True" ItemsSource="{Binding Customers}"   DisplayMemberPath="Name" 
+    SelectedValuePath="Id" 
+    SelectedValue="{Binding Customers}">
+           
+            <!--<ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Name, Mode=OneWay}" ></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>-->
+        </ComboBox>
     </Grid>
 </Window>

@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3c785d4326d247af847ee096327ae208" Name="Diagram1">
+      <Diagram DiagramId="3c785d4326d247af847ee096327ae208" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="EventsDbModel.Customer" Width="1.5" PointX="3" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="EventsDbModel.EventDetail" Width="1.5" PointX="5.25" PointY="0.625" />
         <EntityTypeShape EntityType="EventsDbModel.Location" Width="1.5" PointX="3.125" PointY="3.25" />
-        <EntityTypeShape EntityType="EventsDbModel.Service" Width="1.5" PointX="7.5" PointY="1.125" />
         <EntityTypeShape EntityType="EventsDbModel.Staff" Width="1.5" PointX="7.625" PointY="3.75" />
-        <AssociationConnector Association="EventsDbModel.FK_Services_Services" />
         <AssociationConnector Association="EventsDbModel.FK_EventDetails_Customer" />
         <AssociationConnector Association="EventsDbModel.FK_EventDetails_Customer1" />
         <AssociationConnector Association="EventsDbModel.FK_EventDetails_Staff" />
+        <EntityTypeShape EntityType="EventsDbModel.ServiceEvent" Width="1.5" PointX="7.25" PointY="1" />
+        <EntityTypeShape EntityType="EventsDbModel.Service" Width="1.5" PointX="9.375" PointY="1.125" />
+        <AssociationConnector Association="EventsDbModel.fk_ServiceEvent_EventDetails" />
+        <AssociationConnector Association="EventsDbModel.fk_ServiceEvent_Services" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

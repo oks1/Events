@@ -34,16 +34,12 @@ namespace Events
                 Globals.DbContext = new EventsDbConnection1();
                 LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
 
-                Globals.DbContext = new EventsDbConnection1();
                 LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
 
-                Globals.DbContext = new EventsDbConnection1();
                 LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList(); // equivalent of SELECT * FROM Staffs
 
-                Globals.DbContext = new EventsDbConnection1();
                 LvLocations.ItemsSource = Globals.DbContext.Locations.ToList(); // equivalent of SELECT * FROM Locations
 
-                Globals.DbContext = new EventsDbConnection1();
                 LvServices.ItemsSource = Globals.DbContext.Services.ToList(); // equivalent of SELECT * FROM Services
             }
             catch (SystemException ex)
