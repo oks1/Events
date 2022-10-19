@@ -42,12 +42,19 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PricePerPerson" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="ServiceEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Services">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PricePerHour" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
@@ -64,6 +71,15 @@
           <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="WagePerProject" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="PhotoId" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="image" />
+        </EntityType>
+        <EntityType Name="TestingImages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="image" />
+          <Property Name="name" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_EventDetails_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -101,15 +117,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Services_Services">
+        <Association Name="fk_ServiceEvent_EventDetails">
           <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="1" />
-          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <End Role="ServiceEvent" Type="Self.ServiceEvent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EventDetails">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Services">
+            <Dependent Role="ServiceEvent">
               <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ServiceEvent_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="ServiceEvent" Type="Self.ServiceEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ServiceEvent">
+              <PropertyRef Name="ServiceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -117,8 +145,10 @@
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventDetails" EntityType="Self.EventDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceEvent" EntityType="Self.ServiceEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestingImages" EntityType="Self.TestingImages" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_EventDetails_Customer" Association="Self.FK_EventDetails_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="EventDetails" EntitySet="EventDetails" />
@@ -131,9 +161,13 @@
             <End Role="Staff" EntitySet="Staff" />
             <End Role="EventDetails" EntitySet="EventDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_Services_Services" Association="Self.FK_Services_Services">
+          <AssociationSet Name="fk_ServiceEvent_EventDetails" Association="Self.fk_ServiceEvent_EventDetails">
             <End Role="EventDetails" EntitySet="EventDetails" />
+            <End Role="ServiceEvent" EntitySet="ServiceEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ServiceEvent_Services" Association="Self.fk_ServiceEvent_Services">
             <End Role="Services" EntitySet="Services" />
+            <End Role="ServiceEvent" EntitySet="ServiceEvent" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -155,12 +189,7 @@
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="EventDetails" EntityType="EventsDbModel.EventDetail" />
           <EntitySet Name="Locations" EntityType="EventsDbModel.Location" />
-          <EntitySet Name="Services" EntityType="EventsDbModel.Service" />
           <EntitySet Name="Staffs" EntityType="EventsDbModel.Staff" />
-          <AssociationSet Name="FK_Services_Services" Association="EventsDbModel.FK_Services_Services">
-            <End Role="EventDetail" EntitySet="EventDetails" />
-            <End Role="Service" EntitySet="Services" />
-          </AssociationSet>
           <AssociationSet Name="FK_EventDetails_Customer" Association="EventsDbModel.FK_EventDetails_Customer">
             <End Role="Location" EntitySet="Locations" />
             <End Role="EventDetail" EntitySet="EventDetails" />
@@ -173,6 +202,17 @@
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="EventDetail" EntitySet="EventDetails" />
           </AssociationSet>
+          <EntitySet Name="ServiceEvents" EntityType="EventsDbModel.ServiceEvent" />
+          <EntitySet Name="TestingImages" EntityType="EventsDbModel.TestingImage" />
+          <AssociationSet Name="fk_ServiceEvent_EventDetails" Association="EventsDbModel.fk_ServiceEvent_EventDetails">
+            <End Role="EventDetail" EntitySet="EventDetails" />
+            <End Role="ServiceEvent" EntitySet="ServiceEvents" />
+          </AssociationSet>
+          <EntitySet Name="Services" EntityType="EventsDbModel.Service" />
+          <AssociationSet Name="fk_ServiceEvent_Services" Association="EventsDbModel.fk_ServiceEvent_Services">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="ServiceEvent" EntitySet="ServiceEvents" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EventDetail">
           <Key>
@@ -184,7 +224,6 @@
           <Property Name="StaffId" Type="Int32" Nullable="false" />
           <Property Name="LocationId" Type="Int32" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Services" Relationship="EventsDbModel.FK_Services_Services" FromRole="EventDetail" ToRole="Service" />
           <NavigationProperty Name="Location" Relationship="EventsDbModel.FK_EventDetails_Customer" FromRole="EventDetail" ToRole="Location" />
           <NavigationProperty Name="Customer" Relationship="EventsDbModel.FK_EventDetails_Customer1" FromRole="EventDetail" ToRole="Customer" />
           <NavigationProperty Name="Staff" Relationship="EventsDbModel.FK_EventDetails_Staff" FromRole="EventDetail" ToRole="Staff" />
@@ -192,6 +231,7 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Guests" Type="Int32" Nullable="false" />
           <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="ServiceEvents" Relationship="EventsDbModel.fk_ServiceEvent_EventDetails" FromRole="EventDetail" ToRole="ServiceEvent" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -205,16 +245,6 @@
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EventDetails" Relationship="EventsDbModel.FK_EventDetails_Customer" FromRole="Location" ToRole="EventDetail" />
           <Property Name="PricePerPerson" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="Service">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventId" Type="Int32" Nullable="false" />
-          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EventDetail" Relationship="EventsDbModel.FK_Services_Services" FromRole="Service" ToRole="EventDetail" />
-          <Property Name="PricePerHour" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -230,19 +260,8 @@
           <NavigationProperty Name="EventDetails" Relationship="EventsDbModel.FK_EventDetails_Staff" FromRole="Staff" ToRole="EventDetail" />
           <Property Name="WagePerProject" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="PhotoId" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Services_Services">
-          <End Type="EventsDbModel.EventDetail" Role="EventDetail" Multiplicity="1" />
-          <End Type="EventsDbModel.Service" Role="Service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EventDetail">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Service">
-              <PropertyRef Name="EventId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_EventDetails_Customer">
           <End Type="EventsDbModel.Location" Role="Location" Multiplicity="1" />
           <End Type="EventsDbModel.EventDetail" Role="EventDetail" Multiplicity="*" />
@@ -276,6 +295,57 @@
             </Principal>
             <Dependent Role="EventDetail">
               <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServiceEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EventDetail" Relationship="EventsDbModel.fk_ServiceEvent_EventDetails" FromRole="ServiceEvent" ToRole="EventDetail" />
+          <NavigationProperty Name="Service" Relationship="EventsDbModel.fk_ServiceEvent_Services" FromRole="ServiceEvent" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="TestingImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="fk_ServiceEvent_EventDetails">
+          <End Type="EventsDbModel.EventDetail" Role="EventDetail" Multiplicity="1" />
+          <End Type="EventsDbModel.ServiceEvent" Role="ServiceEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServiceEvent">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PricePerHour" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="ServiceEvents" Relationship="EventsDbModel.fk_ServiceEvent_Services" FromRole="Service" ToRole="ServiceEvent" />
+        </EntityType>
+        <Association Name="fk_ServiceEvent_Services">
+          <End Type="EventsDbModel.Service" Role="Service" Multiplicity="1" />
+          <End Type="EventsDbModel.ServiceEvent" Role="ServiceEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ServiceEvent">
+              <PropertyRef Name="ServiceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -325,19 +395,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="EventsDbModel.Service">
-              <MappingFragment StoreEntitySet="Services">
-                <ScalarProperty Name="PricePerHour" ColumnName="PricePerHour" />
-                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Staffs">
             <EntityTypeMapping TypeName="EventsDbModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
                 <ScalarProperty Name="WagePerProject" ColumnName="WagePerProject" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -346,6 +407,33 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceEvents">
+            <EntityTypeMapping TypeName="EventsDbModel.ServiceEvent">
+              <MappingFragment StoreEntitySet="ServiceEvent">
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestingImages">
+            <EntityTypeMapping TypeName="EventsDbModel.TestingImage">
+              <MappingFragment StoreEntitySet="TestingImages">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="EventsDbModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="PricePerHour" ColumnName="PricePerHour" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

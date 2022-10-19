@@ -14,11 +14,17 @@ namespace Events
     
     public partial class Service
     {
-        public int Id { get; set; }
-        public int EventId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Service()
+        {
+            this.ServiceEvents = new HashSet<ServiceEvent>();
+        }
+    
+        public int id { get; set; }
         public string ServiceName { get; set; }
         public decimal PricePerHour { get; set; }
     
-        public virtual EventDetail EventDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceEvent> ServiceEvents { get; set; }
     }
 }

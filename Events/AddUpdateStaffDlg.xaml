@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Events"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="AddUpdateCustomerDlg" Height="300" Width="800"   
+        Title="AddUpdateCustomerDlg" Height="450" Width="800"   
         ResizeMode="CanResize" 
         BorderBrush="#FFBC1A51"
         WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="False">
@@ -41,13 +41,28 @@
             <Label Content="Wage Per Project" HorizontalAlignment="Left" Margin="440,100,0,0" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="TbxWage" HorizontalAlignment="Left" Margin="559,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
 
-            <Label Content="PhotoId" HorizontalAlignment="Left" Margin="440,140,0,0" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TbxPhoto" HorizontalAlignment="Left" Margin="560,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+            <Label Content="Photo" HorizontalAlignment="Left" Margin="440,140,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="TbxPhoto" HorizontalAlignment="Left" Margin="559,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+
+            <TextBox x:Name="ImagePath" HorizontalAlignment="Left" Margin="560,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+
+            <Button x:Name="BtnUpload" Content="..." HorizontalAlignment="Left" Margin="440,237,0,0" VerticalAlignment="Top" Width="62" Click="BtnUpload_Click"/>
+
+            <Image x:Name="imagePicture" Margin="572,225,29,14" RenderTransformOrigin="1,1" >
+                <Image.Source>
+                    <BitmapImage UriSource="{Binding ElementName = ImagePath, Path=Text}" />
+                </Image.Source>
+            </Image>
+            
+
+
+
+
 
         </Grid>
 
-        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="79,245,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="251,245,0,0" VerticalAlignment="Top" Width="92"/>
 
 
     </Grid>

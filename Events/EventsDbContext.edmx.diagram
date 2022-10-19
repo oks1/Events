@@ -6,14 +6,17 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3c785d4326d247af847ee096327ae208" Name="Diagram1">
         <EntityTypeShape EntityType="EventsDbModel.Customer" Width="1.5" PointX="3" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventsDbModel.EventDetail" Width="1.5" PointX="5.25" PointY="0.625" />
+        <EntityTypeShape EntityType="EventsDbModel.EventDetail" Width="1.5" PointX="6.875" PointY="0.5" />
         <EntityTypeShape EntityType="EventsDbModel.Location" Width="1.5" PointX="3.125" PointY="3.25" />
-        <EntityTypeShape EntityType="EventsDbModel.Service" Width="1.5" PointX="7.5" PointY="1.125" />
-        <EntityTypeShape EntityType="EventsDbModel.Staff" Width="1.5" PointX="7.625" PointY="3.75" />
-        <AssociationConnector Association="EventsDbModel.FK_Services_Services" />
+        <EntityTypeShape EntityType="EventsDbModel.Staff" Width="1.5" PointX="6.25" PointY="4.75" />
         <AssociationConnector Association="EventsDbModel.FK_EventDetails_Customer" />
         <AssociationConnector Association="EventsDbModel.FK_EventDetails_Customer1" />
         <AssociationConnector Association="EventsDbModel.FK_EventDetails_Staff" />
+        <EntityTypeShape EntityType="EventsDbModel.ServiceEvent" Width="1.5" PointX="10.125" PointY="0.75" />
+        <EntityTypeShape EntityType="EventsDbModel.TestingImage" Width="1.5" PointX="0.75" PointY="6.875" />
+        <AssociationConnector Association="EventsDbModel.fk_ServiceEvent_EventDetails" />
+        <EntityTypeShape EntityType="EventsDbModel.Service" Width="1.5" PointX="8.375" PointY="5.875" />
+        <AssociationConnector Association="EventsDbModel.fk_ServiceEvent_Services" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

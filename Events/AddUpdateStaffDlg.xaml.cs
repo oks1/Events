@@ -1,6 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +15,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
+
+
+
+//using Image = System.Drawing.Image;
 
 namespace Events
 {
@@ -20,6 +29,55 @@ namespace Events
     public partial class AddUpdateStaffDlg : Window
     {
         Staff currentStaff;
+        byte[] imageBytes=null ;
+
+        private void BtnUpload_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            var dialog = new OpenFileDialog
+            {
+                CheckFileExists = true,
+                Multiselect = false,
+                Filter = "Images (*.jpg,*.png, *jpeg)|*.jpg;*.png, *jpeg|All Files(*.*)|*.*"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                ImagePath.Text = dialog.FileName;
+                imagePicture.Source = new BitmapImage(new Uri(ImagePath.Text));
+
+                try
+                {
+                    using (var fs = new FileStream(ImagePath.Text, FileMode.Open, FileAccess.Read))
+                    {
+                        imageBytes = new byte[fs.Length];
+                        fs.Read(imageBytes, 0, Convert.ToInt32(fs.Length));
+                        // fs.Close();
+                    } // FIXME: exceptions
+                } catch (Exception ex) when (ex is IOException || ex is SystemException)
+                {
+                    MessageBox.Show(this, ex.Message, "File IO  error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+               // Console.WriteLine("Araaaaay" + imageBytes);
+
+                ////save
+                //if (!String.IsNullOrEmpty(ImagePath.Text))
+                //{
+                //    Globals.DbContext.Staffs.Add(new Staff()
+                //    {
+                //        Photo = imageBytes,
+                //        ///name = ImagePath.Text
+                //    }); ;
+                //    Globals.DbContext.SaveChanges();
+
+                //}
+            }
+            
+        }
+
+
         public AddUpdateStaffDlg(Staff currentStaff = null)
         {
             InitializeComponent();
@@ -33,7 +91,14 @@ namespace Events
                 TbxPhone.Text = currentStaff.Phone;
                 TbxAddress.Text = currentStaff.Address;
                 TbxWage.Text = currentStaff.WagePerProject.ToString();
-                TbxPhoto.Text = currentStaff.PhotoId.ToString();
+                //TbxPhoto.Text = currentStaff.PhotoId.ToString();
+                if (currentStaff.Photo!=null) {
+                    MemoryStream byteStream = new MemoryStream(currentStaff.Photo);
+                    BitmapImage image = new BitmapImage(); image.BeginInit();
+                    image.StreamSource = byteStream; image.EndInit();
+                    imagePicture.Source = image;
+                }
+                
                 btSave.Content = "Update";
 
             }
@@ -41,7 +106,6 @@ namespace Events
             {
                 btSave.Content = "Add";
             }
-
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
@@ -51,30 +115,35 @@ namespace Events
 
                 if (currentStaff != null)
                 {//update
+
+                 
                     currentStaff.Name = TbxName.Text;
                     currentStaff.JobTitle = TbxTitle.Text;
                     currentStaff.Email = TbxEmail.Text;
                     currentStaff.Password = TbxPassword.Password;
                     currentStaff.Phone = TbxPhone.Text;
                     currentStaff.Address = TbxAddress.Text;
-                    currentStaff.WagePerProject = int.Parse(TbxWage.Text);
-                    currentStaff.PhotoId = int.Parse(TbxPhoto.Text);
-                
+                    currentStaff.WagePerProject = decimal.Parse(TbxWage.Text);
+
+                    currentStaff.Photo = imageBytes;
+               
                 }
                 else
-                { //add
+                { 
                     string name = TbxName.Text;
                     string title = TbxTitle.Text;
                     string email = TbxEmail.Text;
                     string password = TbxPassword.Password;
                     string phone = TbxPhone.Text;
                     string address = TbxAddress.Text;
-                    int wage = int.Parse(TbxWage.Text);
-                    int photoId = int.Parse(TbxPhoto.Text);
-                    
-                    Globals.DbContext.Staffs.Add(new Staff() { Name = name, JobTitle=title, Email = email, Password=password, Phone = phone, Address = address, WagePerProject = wage, PhotoId=photoId  });
+                    decimal wage = decimal.Parse(TbxWage.Text);
 
+                    byte[] photo = imageBytes;
+
+
+                    Globals.DbContext.Staffs.Add(new Staff() { Name = name, JobTitle = title, Email = email, Password = password, Phone = phone, Address = address, WagePerProject = wage, Photo = photo });
                 }
+                //}
 
                 Globals.DbContext.SaveChanges();
                 this.DialogResult = true; // dismiss the dialog
@@ -103,10 +172,51 @@ namespace Events
             TbxPhone.Text = ""; 
             TbxAddress.Text = "";
             TbxWage.Text = "";
-            TbxPhoto.Text = "";
+           // TbxPhoto.Text = "";
             
+        }
 
 
+        //public Image byteArrayToImage(byte[] bytes)
+        //{
+        //    //MemoryStream ms = new MemoryStream(byteArrayIn);
+        //   // Image returnImage = Image.FromStream(ms);
+        //   //return returnImage;
+
+
+        //    MemoryStream byteStream = new MemoryStream(bytes); 
+        //    BitmapImage image = new BitmapImage(); image.BeginInit(); 
+        //    image.StreamSource = byteStream; image.EndInit(); 
+        //    imagePicture.Source = image;
+
+        //}
+
+        //public static byte[] imgToByteConverter(Image inImg) 
+        //{ ImageConverter imgCon = new ImageConverter(); 
+        //    return (byte[])imgCon.ConvertTo(inImg, typeof(byte[])); }
+
+
+        //public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        //{
+        //    MemoryStream ms = new MemoryStream();
+        //    imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Png.Jpg.Jpeg);
+        //    return ms.ToArray();
+        //}
+
+        public int SaveImage(byte[] imageBytes)
+        {
+            TestingImage Image = new TestingImage();
+            if (!String.IsNullOrEmpty(ImagePath.Text))
+            {
+                Globals.DbContext.TestingImages.Add(new TestingImage()
+                {
+                    image = imageBytes,
+                    name = ImagePath.Text
+                }); 
+                Globals.DbContext.SaveChanges();
+
+            }
+            return Image.id;
         }
     }
 }

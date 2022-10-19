@@ -17,7 +17,7 @@ namespace Events
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EventDetail()
         {
-            this.Services = new HashSet<Service>();
+            this.ServiceEvents = new HashSet<ServiceEvent>();
         }
     
         public int Id { get; set; }
@@ -31,10 +31,10 @@ namespace Events
         public int Guests { get; set; }
         public decimal TotalAmount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Service> Services { get; set; }
         public virtual Location Location { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Staff Staff { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceEvent> ServiceEvents { get; set; }
     }
 }
