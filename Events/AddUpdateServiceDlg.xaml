@@ -1,0 +1,34 @@
+﻿<Window x:Class="Events.AddUpdateServiceDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Events"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="AddUpdateCustomerDlg" Height="300" Width="800"   
+        ResizeMode="CanResize" 
+        BorderBrush="#FFBC1A51"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="False">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="7"/>
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+
+        <Grid Height="30" VerticalAlignment="Top" Background="#FFE91E63">
+            <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">Service</TextBlock>
+        </Grid>
+        <Grid Margin="10,15,10,70">
+            <Label Content="Name" HorizontalAlignment="Left" Margin="100,60,0,0" VerticalAlignment="Top"/>
+
+            <TextBox x:Name="TbxName"  HorizontalAlignment="Left" Margin="100,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+            <TextBox x:Name="TbxEvent" HorizontalAlignment="Left" Margin="300,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146"/>
+            <TextBox x:Name="TbxPrice" HorizontalAlignment="Left" Margin="500,100,0,0" TextWrapping="Wrap" Text="" Width="154"  VerticalAlignment="Top"/>
+            <Label Content="Event ID" HorizontalAlignment="Left" Margin="300,60,0,0" VerticalAlignment="Top"/>
+            <Label Content="Price per Hour" HorizontalAlignment="Left" Margin="500,60,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
+        <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
+    </Grid>
+</Window>
