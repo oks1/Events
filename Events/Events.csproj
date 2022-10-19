@@ -90,6 +90,9 @@
     <Compile Include="AddUpdateStaffDlg.xaml.cs">
       <DependentUpon>AddUpdateStaffDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>EventsDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventDetail.cs">
       <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
@@ -104,6 +107,9 @@
       <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Staff.cs">
+      <DependentUpon>EventsDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestingImage.cs">
       <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
     <Page Include="AddUpdateServiceDlg.xaml">
@@ -133,9 +139,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="EventsDbContext.Context.cs">
       <AutoGen>True</AutoGen>

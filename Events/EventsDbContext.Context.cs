@@ -30,6 +30,7 @@ namespace Events
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<ServiceEvent> ServiceEvents { get; set; }
+        public virtual DbSet<TestingImage> TestingImages { get; set; }
         public virtual DbSet<Service> Services { get; set; }
     }
 }

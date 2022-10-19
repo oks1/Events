@@ -73,6 +73,14 @@
           <Property Name="PhotoId" Type="int" Nullable="false" />
           <Property Name="Photo" Type="image" />
         </EntityType>
+        <EntityType Name="TestingImages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="image" />
+          <Property Name="name" Type="nvarchar(max)" />
+        </EntityType>
         <Association Name="FK_EventDetails_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
           <End Role="EventDetails" Type="Self.EventDetails" Multiplicity="*" />
@@ -140,6 +148,7 @@
           <EntitySet Name="ServiceEvent" EntityType="Self.ServiceEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestingImages" EntityType="Self.TestingImages" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_EventDetails_Customer" Association="Self.FK_EventDetails_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="EventDetails" EntitySet="EventDetails" />
@@ -192,6 +201,17 @@
           <AssociationSet Name="FK_EventDetails_Staff" Association="EventsDbModel.FK_EventDetails_Staff">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="EventDetail" EntitySet="EventDetails" />
+          </AssociationSet>
+          <EntitySet Name="ServiceEvents" EntityType="EventsDbModel.ServiceEvent" />
+          <EntitySet Name="TestingImages" EntityType="EventsDbModel.TestingImage" />
+          <AssociationSet Name="fk_ServiceEvent_EventDetails" Association="EventsDbModel.fk_ServiceEvent_EventDetails">
+            <End Role="EventDetail" EntitySet="EventDetails" />
+            <End Role="ServiceEvent" EntitySet="ServiceEvents" />
+          </AssociationSet>
+          <EntitySet Name="Services" EntityType="EventsDbModel.Service" />
+          <AssociationSet Name="fk_ServiceEvent_Services" Association="EventsDbModel.fk_ServiceEvent_Services">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="ServiceEvent" EntitySet="ServiceEvents" />
           </AssociationSet>
           <EntitySet Name="ServiceEvents" EntityType="EventsDbModel.ServiceEvent" />
           <EntitySet Name="Services" EntityType="EventsDbModel.Service" />
@@ -389,24 +409,6 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ServiceEvents">
-            <EntityTypeMapping TypeName="EventsDbModel.ServiceEvent">
-              <MappingFragment StoreEntitySet="ServiceEvent">
-                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="EventsDbModel.Service">
-              <MappingFragment StoreEntitySet="Services">
-                <ScalarProperty Name="PricePerHour" ColumnName="PricePerHour" />
-                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
