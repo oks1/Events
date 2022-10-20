@@ -85,7 +85,7 @@
 
                                     <GridViewColumn  DisplayMemberBinding="{Binding Id}"   Header="ID"  />
                                     <GridViewColumn  DisplayMemberBinding="{Binding TypeOfEvent}" Header="TypeOfEvent"  />
-                                    <GridViewColumn  DisplayMemberBinding="{Binding Date}" Header="Date" />
+                                    <GridViewColumn  DisplayMemberBinding="{Binding Date, StringFormat='yyyy-MM-dd'}" Header="Date" />
 
 
 
@@ -212,7 +212,8 @@
                             </ListView.View>
                         </ListView>
                         <Button x:Name="BtnAddLocation" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2" Click="BtnAddLocation_Click"/>
-                        <Button x:Name="BtnDeleteLocation" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteLocation" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"
+                                Click="BtnDeleteLocation_Click"/>
                         <Button x:Name="BtnUpdateLocation"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2" Click="BtnUpdateLocation_Click"/>
                     </Grid>
                 </TabItem>
@@ -330,7 +331,8 @@
                             </ListView.View>
                         </ListView>
                         <Button x:Name="BtnAddStaff" Content="Add" Margin="100,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="40" Width="100" Command="{Binding RunDialogCommand}" Grid.RowSpan="2" Click="BtnAddStaff_Click"/>
-                        <Button x:Name="BtnDeleteStaff" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"/>
+                        <Button x:Name="BtnDeleteStaff" Content="Delete" Margin="0,409,0,0"  VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Width="100" Grid.RowSpan="2"
+                                Click="BtnDeleteStaff_Click"/>
                         <Button x:Name="BtnUpdateStaff"  Content="Update" Margin="0,409,100,0"  VerticalAlignment="Top" HorizontalAlignment="Right" Height="40" Width="100" Grid.RowSpan="2" Click="BtnUpdateStaff_Click"/>
                     </Grid>
                 </TabItem>

@@ -80,8 +80,8 @@ namespace Events
             if (dialog.ShowDialog() == true)
             {
 
-                LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM people
-                                                                               
+                LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
+
                 Console.WriteLine("Customer was added");
 
             }
@@ -96,8 +96,13 @@ namespace Events
             var result = MessageBox.Show(this, "Are you sure you want to delete this Customer?", "Confirm deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes) return;
 
-            Globals.DbContext.Customers.Remove(currSelCustomer);
-            Globals.DbContext.SaveChanges();
+
+            
+              Globals.DbContext.Customers.Remove(currSelCustomer);
+              Globals.DbContext.SaveChanges();
+           
+
+
             LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList();
         }
 
@@ -282,6 +287,32 @@ namespace Events
                 LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events
 
             }
+        }
+
+        private void BtnDeleteLocation_Click(object sender, RoutedEventArgs e)
+        {
+            Location currSelLocation = LvLocations.SelectedItem as Location;
+            if (currSelLocation == null) return;
+            var result = MessageBox.Show(this, "Are you sure you want to delete this Location?", "Confirm deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes) return;
+
+            Globals.DbContext.Locations.Remove(currSelLocation);
+            Globals.DbContext.SaveChanges();
+
+            LvLocations.ItemsSource = Globals.DbContext.Locations.ToList();
+        }
+
+        private void BtnDeleteStaff_Click(object sender, RoutedEventArgs e)
+        {
+            Staff currSelStaff = LvStaffs.SelectedItem as Staff;
+            if (currSelStaff == null) return;
+            var result = MessageBox.Show(this, "Are you sure you want to delete this row?", "Confirm deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes) return;
+
+            Globals.DbContext.Staffs.Remove(currSelStaff);
+            Globals.DbContext.SaveChanges();
+
+            LvStaffs.ItemsSource = Globals.DbContext.Staffs.ToList();
         }
     }
 }

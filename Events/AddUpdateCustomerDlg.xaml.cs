@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net;
+using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Events
 {
@@ -52,20 +57,87 @@ namespace Events
 
                 if (currCust != null)
                 {//update
-                    currCust.Name = TbxName.Text;
-                    currCust.Address = TbxAddress.Text;
-                    currCust.Email = TbxEmail.Text;
-                    currCust.Phone = TbxPhone.Text;
+
+                    try
+                    {
+                        currCust.Name = TbxName.Text;
+                        currCust.Address = TbxAddress.Text;
+                        currCust.Email = TbxEmail.Text;
+                        currCust.Phone = TbxPhone.Text;
+
+                        if (currCust.Name.Length < 3)
+                        {
+                            MessageBox.Show("Name must be 3 or more characters", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else
+                       if (currCust.Address.Length < 1)
+                        {
+                            MessageBox.Show("Address must be 1 or more characters", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else
+                       if (!Regex.IsMatch(currCust.Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+                        {
+                            MessageBox.Show("Email format", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else
+                       if (!Regex.IsMatch(currCust.Phone, @"^[0-9]{10}"))
+                        {
+                            MessageBox.Show("Phone must be in a digital format (10 digits)", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
 
                 }
                 else
                 { //add
-                    string name = TbxName.Text;
-                    string address = TbxAddress.Text;
-                    string email = TbxEmail.Text;
-                    string phone = TbxPhone.Text;
+                    try
+                    {
+                        string name = TbxName.Text;
+                        string address = TbxAddress.Text;
+                        string email = TbxEmail.Text;
+                        string phone = TbxPhone.Text;
 
-                    Globals.DbContext.Customers.Add(new Customer() { Name = name, Address = address, Email = email, Phone = phone });
+                        if (name.Length < 3)
+                        {
+                            MessageBox.Show("Name must be 3 or more characters", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else
+                        if (address.Length < 1)
+                        {
+                            MessageBox.Show("Address must be 1 or more characters", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else
+                        if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+                        {
+                            MessageBox.Show("Email format", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else
+                        if (!Regex.IsMatch(phone, @"^[0-9]{10}"))
+                        {
+                            MessageBox.Show("Phone must be in a digital format (10 digits)", "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+
+                        Globals.DbContext.Customers.Add(new Customer() { Name = name, Address = address, Email = email, Phone = phone });
+
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "Input error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+
+                 //   Globals.DbContext.Customers.Add(new Customer() { Name = name, Address = address, Email = email, Phone = phone });
 
                 }
 
