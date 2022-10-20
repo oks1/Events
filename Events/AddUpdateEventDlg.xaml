@@ -8,7 +8,7 @@
         Loaded="Window_Loaded"
         Title="AddUpdateEventDlg" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-         Height="300" Width="800"   
+         Height="300" Width="1000"   
         ResizeMode="CanResize" 
         BorderBrush="#FFBC1A51"
     
@@ -17,7 +17,7 @@
         <WindowChrome ResizeBorderThickness="7"/>
     </WindowChrome.WindowChrome>
 
-    <Grid>
+    <Grid Margin="0,0,-165,0">
 
         <Grid Height="30" VerticalAlignment="Top" Background="#FFE91E63">
             <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">Event</TextBlock>
@@ -26,17 +26,32 @@
             <Label Content="TypeOfEvent" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="120"/>
             <ComboBox Name="ComboTypes" SelectedValuePath="Content" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Width="177"   materialDesign:HintAssist.Hint="Search"
   materialDesign:HintAssist.HintOpacity=".26"
-  materialDesign:ComboBoxAssist.MaxLength="2"
+  materialDesign:ComboBoxAssist.MaxLength="3"
   IsEditable="True">
                 <ComboBoxItem Content = "Wedding" />
                 <ComboBoxItem Content = "Birthday" />
                 <ComboBoxItem Content = "Anniversary" />
             </ComboBox>
-            <Label Content="CustomerId" HorizontalAlignment="Left" Margin="40,45,0,0" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TbxCustomer" HorizontalAlignment="Left" Margin="200,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" />
+            <Label Content="Customer" HorizontalAlignment="Left" Margin="40,45,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox Name="ComboCustomer"  HorizontalAlignment="Left" Margin="200,45,0,0" VerticalAlignment="Top" Width="177"   materialDesign:HintAssist.Hint="Search"
+  materialDesign:HintAssist.HintOpacity=".26"
+  materialDesign:ComboBoxAssist.MaxLength="3"
+            IsEditable="True" ItemsSource="{Binding Customers}"   DisplayMemberPath="Name" 
+    SelectedValuePath="Id" 
+    SelectedValue="{Binding Customers}" SelectionChanged="ComboCustomer_SelectionChanged">
 
-            <Label Content="LocationId" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TbxLocation" HorizontalAlignment="Left" Margin="200,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" />
+            </ComboBox>
+            <Label Content="Location" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox Name="ComboLocation"  HorizontalAlignment="Left" Margin="200,80,0,0" VerticalAlignment="Top" Width="177"   materialDesign:HintAssist.Hint="Search"
+  materialDesign:HintAssist.HintOpacity=".26"
+  materialDesign:ComboBoxAssist.MaxLength="3"
+            IsEditable="True" ItemsSource="{Binding Locations}"   DisplayMemberPath="Name" 
+    SelectedValuePath="Id"  SelectedValue="{Binding Locations}" SelectionChanged="ComboLocation_SelectionChanged">
+
+            </ComboBox>
+            <!--<TextBox x:Name="TxtLocation" HorizontalAlignment="Left" Margin="400,89,0,0"
+                       TextWrapping="Wrap" VerticalAlignment="Top" ItemsSource="{Binding Locations.PricePerPerson}" Width="20"
+                        />-->
 
             <Label Content="Duration" HorizontalAlignment="Left" Margin="40,115,0,0" VerticalAlignment="Top" Width="120"/>
             <Slider Name="SliderDur" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="230,115,0,0" VerticalAlignment="Top" Width="150" TickPlacement="BottomRight" Value="0" TickFrequency="1" Minimum="0" Maximum="24" SelectionEnd="24"/>
@@ -46,11 +61,17 @@
             <DatePicker Name="TbxDate" HorizontalAlignment="Left" Margin="200,150,0,0" Width="173" VerticalAlignment="Top"/>
 
             <Label Content="Guests" HorizontalAlignment="Left" Margin="440,10,0,0" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TbxGuests" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Margin="560,10,0,0"/>
+            <TextBox x:Name="TbxGuests" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Margin="560,10,0,0"  />
 
             <Label Content="StaffId" HorizontalAlignment="Left" Margin="440,45,0,0" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="TbxStaff" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Margin="560,45,0,0"/>
+            <ComboBox Name="ComboStaff"  HorizontalAlignment="Left" Margin="560,45,0,0" VerticalAlignment="Top" Width="177"   materialDesign:HintAssist.Hint="Search"
+  materialDesign:HintAssist.HintOpacity=".26"
+  materialDesign:ComboBoxAssist.MaxLength="3"
+            IsEditable="True" ItemsSource="{Binding Staff}"   DisplayMemberPath="Name" 
+    SelectedValuePath="id" 
+    SelectedValue="{Binding Staff}" SelectionChanged="ComboStaff_SelectionChanged">
 
+            </ComboBox>
             <Label Content="Note" HorizontalAlignment="Left" Margin="440,80,0,0" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="TbxNote" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177" Height="60" MaxLength="100" Margin="560,80,0,0"/>
 
@@ -59,18 +80,8 @@
         </Grid>
         <Button Name="btSave" IsDefault="True" Click="btSave_Click" Content="Save" HorizontalAlignment="Left" Margin="300,249,0,0" VerticalAlignment="Top" Width="92"/>
         <Button IsCancel="True" Content="Cancel" HorizontalAlignment="Left" Margin="408,249,0,0" VerticalAlignment="Top" Width="92"/>
-        <ComboBox Name="ComboCustomer"  HorizontalAlignment="Left" Margin="578,254,0,0" VerticalAlignment="Top" Width="177"   materialDesign:HintAssist.Hint="Search"
-  materialDesign:HintAssist.HintOpacity=".26"
-  materialDesign:ComboBoxAssist.MaxLength="2"
-            IsEditable="True" ItemsSource="{Binding Customers}"   DisplayMemberPath="Name" 
-    SelectedValuePath="Id" 
-    SelectedValue="{Binding Customers}">
-           
-            <!--<ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Path=Name, Mode=OneWay}" ></TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>-->
-        </ComboBox>
+         
+
+
     </Grid>
 </Window>

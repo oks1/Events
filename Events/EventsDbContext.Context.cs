@@ -13,10 +13,10 @@ namespace Events
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EventsDbConnection1 : DbContext
+    public partial class EventsDbConnection : DbContext
     {
-        public EventsDbConnection1()
-            : base("name=EventsDbConnection1")
+        public EventsDbConnection()
+            : base("name=EventsDbConnection")
         {
         }
     
@@ -28,9 +28,8 @@ namespace Events
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<EventDetail> EventDetails { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Staff> Staffs { get; set; }
         public virtual DbSet<ServiceEvent> ServiceEvents { get; set; }
-        public virtual DbSet<TestingImage> TestingImages { get; set; }
         public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<Staff> Staffs { get; set; }
     }
 }

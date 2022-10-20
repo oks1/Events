@@ -8,6 +8,6 @@ namespace Events
 {
     internal class Globals
     {
-        public static EventsDbConnection1 DbContext;
+        public static EventsDbConnection DbContext;
     }
 }

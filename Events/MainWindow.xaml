@@ -271,7 +271,7 @@
             Kind="AccountBoxOutline" />
                             <TextBlock
             HorizontalAlignment="Center"
-            Text="Staffs" />
+            Text="Staff" />
                         </StackPanel>
                     </TabItem.Header>
                     <Grid>

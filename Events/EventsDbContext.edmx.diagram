@@ -4,14 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3c785d4326d247af847ee096327ae208" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="EventsDbModel.Customer" Width="1.5" PointX="3" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventsDbModel.EventDetail" Width="1.5" PointX="6.875" PointY="0.5" />
-        <EntityTypeShape EntityType="EventsDbModel.Location" Width="1.5" PointX="3.125" PointY="3.25" />
-        <EntityTypeShape EntityType="EventsDbModel.Staff" Width="1.5" PointX="7.625" PointY="3.75" />
-        <AssociationConnector Association="EventsDbModel.FK_EventDetails_Customer" />
-        <AssociationConnector Association="EventsDbModel.FK_EventDetails_Customer1" />
-        <AssociationConnector Association="EventsDbModel.FK_EventDetails_Staff" />
+      <Diagram DiagramId="29ef0efb82bd47a1ba0e94fc0976adc4" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="EventsDbModel.Customer" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventsDbModel.EventDetail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventsDbModel.Location" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventsDbModel.ServiceEvent" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventsDbModel.Service" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventsDbModel.Staff" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="EventsDbModel.FK_EventDetails_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="EventsDbModel.FK_EventDetails_Locations" ManuallyRouted="false" />
+        <AssociationConnector Association="EventsDbModel.FK_EventDetails_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="EventsDbModel.fk_ServiceEvent_EventDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="EventsDbModel.fk_ServiceEvent_Services" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

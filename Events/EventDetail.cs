@@ -24,15 +24,15 @@ namespace Events
         public string TypeOfEvent { get; set; }
         public int CustomerId { get; set; }
         public int StaffId { get; set; }
-        public int LocationId { get; set; }
-        public string Notes { get; set; }
         public int Duration { get; set; }
         public System.DateTime Date { get; set; }
         public int Guests { get; set; }
+        public int LocationId { get; set; }
         public decimal TotalAmount { get; set; }
+        public string Notes { get; set; }
     
-        public virtual Location Location { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual Location Location { get; set; }
         public virtual Staff Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceEvent> ServiceEvents { get; set; }

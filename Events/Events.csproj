@@ -96,6 +96,21 @@
     <Compile Include="EventDetail.cs">
       <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventsDbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventsDbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventsDbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventsDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventsDbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventsDbContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Location.cs">
       <DependentUpon>EventsDbContext.tt</DependentUpon>
@@ -107,9 +122,6 @@
       <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Staff.cs">
-      <DependentUpon>EventsDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TestingImage.cs">
       <DependentUpon>EventsDbContext.tt</DependentUpon>
     </Compile>
     <Page Include="AddUpdateServiceDlg.xaml">
@@ -139,21 +151,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EventsDbContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventsDbContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EventsDbContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventsDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EventsDbContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventsDbContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -209,7 +206,6 @@
       <LastGenOutput>EventsDbContext.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

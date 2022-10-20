@@ -1,28 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Xml.Linq;
+
 
 namespace Events
 {
-    /// <summary>
-    /// Interaction logic for AddUpdateEventDlg.xaml
-    /// </summary>
-    /// 
-
-    
-
-    public partial class AddUpdateEventDlg : Window
+     public partial class AddUpdateEventDlg : Window
     {
         EventDetail currentEvent;
 
@@ -30,22 +15,16 @@ namespace Events
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
+
             {
-                //Customers
-
-                Globals.DbContext = new EventsDbConnection1();
-
+               //Globals.DbContext = new EventsDbConnection();
                 ComboCustomer.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
-                                                                                  // Console.Write(ComboCustomer.ItemsSource.ToString());
-                                                                                  //List<Customer> CustomerList = new List<Customer>();
-                                                                                  //int num = Globals.DbContext.Customers.ToList().Count;
+                ComboLocation.ItemsSource = Globals.DbContext.Locations.ToList();
+                ComboStaff.ItemsSource = Globals.DbContext.Staffs.ToList();
+                //List<Service> services = new List<Service>();
+                //DgService.ItemsSource = Globals.DbContext.Services.ToList();
+                
 
-                //for (int i = 0; i < num; i++)
-                //{
-                //    ComboCustomer.Items.Add(ComboCustomer.Items[i]);
-                //     //   (Customer.Name[i]["itemname"].tostring());
-                //       // items.add(ComboCustomer.itemssource[i]["itemname"].tostring());
-                //}
             }
             catch (SystemException ex)
             {
@@ -64,24 +43,12 @@ namespace Events
             {
 
                 ComboTypes.SelectedValue = currentEvent.TypeOfEvent;
-                Customer currSelCust = ComboCustomer.SelectedValue as Customer;
-                Console.WriteLine(currSelCust.Name);
-                Customer customerID = Globals.DbContext.Customers.Find(currSelCust.Name);
-
-                //ComboCustomer.SelectedValue = customerID.Id;
-                currentEvent.CustomerId = customerID.Id;
-                //Customer currSelCust = ComboCustomer.SelectedValue as Customer;
-                //ComboCustomer.SelectedValue = currentEvent.Name;
-                //Customer customerID = Globals.DbContext.Customers.Find(currSelCust.Id);
-                //ComboCustomer.SelectedValue = currentEvent.CustomerId.ToString();
-                //ComboCustomer.SelectedValue = Globals.DbContext.Customers.Find(currSelCust.Id);
-                TbxCustomer.Text = currentEvent.CustomerId.ToString();
-                TbxStaff.Text = currentEvent.StaffId.ToString();
-                Console.WriteLine(TbxStaff.Text);
+                ComboCustomer.Text = currentEvent.Customer.Name.ToString();
+                ComboStaff.Text = currentEvent.Staff.Name.ToString();
                 TbxSliderDur.Text = currentEvent.Duration.ToString();
                 TbxDate.Text = currentEvent.Date.ToString();
                 TbxGuests.Text = currentEvent.Guests.ToString();
-                TbxLocation.Text = currentEvent.LocationId.ToString();
+                ComboLocation.Text = currentEvent.Location.Name.ToString();
                 TbxTotal.Text=currentEvent.TotalAmount.ToString();
                 btSave.Content = "Update";
 
@@ -101,44 +68,36 @@ namespace Events
 
                 if (currentEvent != null)
                 {//update
+                  
                     currentEvent.TypeOfEvent= ComboTypes.SelectedValue?.ToString();
-
-                    //currentEvent.CustomerId = int.Parse(TbxCustomer.Text);
-                    //currentEvent.CustomerId = customerID.Id;
-                    currentEvent.StaffId = int.Parse(TbxStaff.Text);
-                    
                     currentEvent.Duration = (int)SliderDur.Value;
                     
                     DateTime.TryParse(TbxDate.Text, out DateTime eventDate);
                     currentEvent.Date = eventDate;
-                    currentEvent.Guests = int.Parse(TbxGuests.Text);
+                   // currentEvent.Guests = int.Parse(TbxGuests.Text);
 
-                    currentEvent.LocationId = int.Parse(TbxLocation.Text);
-                    currentEvent.TotalAmount = decimal.Parse(TbxTotal.Text);
+                    //currentEvent.TotalAmount = decimal.Parse(TbxTotal.Text);
                     
-
                 }
                 else
                 { //add
-
                     string typeOfEvent= ComboTypes.SelectedValue?.ToString();
-                    
 
-                    //Customer customID = Globals.DbContext.Customers.Find(customer);
-                    // Console.Write(customID);
-                    //int customerId = customID.Id;
-                    int customerId = int.Parse(ComboCustomer.SelectedValue?.ToString());
+                    int customerId = int.Parse(ComboCustomer.SelectedIndex.ToString());
+                
+                    int staffId = int.Parse(ComboStaff.SelectedValue?.ToString());
 
-                    int staffId = int.Parse(TbxStaff.Text);
-                    
                     int duration = (int)SliderDur.Value;
                     
                     DateTime.TryParse(TbxDate.Text, out DateTime eventDate);
                     
                     int guests = int.Parse(TbxGuests.Text);
                     
-                    int locationId = int.Parse(TbxLocation.Text);
+                    int locationId = int.Parse(ComboLocation.SelectedValue?.ToString());
                     decimal total = decimal.Parse(TbxTotal.Text);
+                    //decimal total = decimal.Parse(guests.ToString());
+                    //currentEvent.TotalAmount = currentEvent.Staff.WagePerProject +
+                    //    (currentEvent.Guests * currentEvent.Location.PricePerPerson);
                     string note = TbxNote.Text;
                     //string note = ComboCustomer.SelectedValue?.ToString();
                     Globals.DbContext.EventDetails.Add(new EventDetail() { TypeOfEvent= typeOfEvent, CustomerId = customerId, StaffId = staffId, Duration=duration, Date=eventDate, Guests=guests, LocationId=locationId, TotalAmount=total,
@@ -174,6 +133,50 @@ namespace Events
 
         }
 
-       
+        private void ComboCustomer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (currentEvent != null)
+            {
+                currentEvent.CustomerId = int.Parse(ComboCustomer.SelectedValue?.ToString());
+            //    currentEvent.TotalAmount = currentEvent.Staff.WagePerProject +
+            //                (currentEvent.Guests * currentEvent.Location.PricePerPerson);
+            //    TbxTotal.Text = currentEvent.TotalAmount.ToString();
+            //
+            }
+
+        }
+
+        private void ComboLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (currentEvent != null)
+            {
+                currentEvent.LocationId = int.Parse(ComboLocation.SelectedValue?.ToString());
+               // currentEvent.TotalAmount = currentEvent.Staff.WagePerProject +
+              //              (currentEvent.Guests * currentEvent.Location.PricePerPerson);
+               // TbxTotal.Text = currentEvent.TotalAmount.ToString();
+            }
+        }
+
+        private void ComboStaff_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (currentEvent != null)
+            {
+                currentEvent.StaffId = int.Parse(ComboStaff.SelectedValue?.ToString());
+                //currentEvent.TotalAmount = currentEvent.Staff.WagePerProject +
+                //            (currentEvent.Guests * currentEvent.Location.PricePerPerson);
+                //TbxTotal.Text = currentEvent.TotalAmount.ToString();
+            }
+        }
+
+        //private void TbxGuests_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    if (currentEvent != null)
+        //    {
+        //        currentEvent.Guests = int.Parse(TbxGuests.Text);
+        //        currentEvent.TotalAmount = currentEvent.Staff.WagePerProject +
+        //                    (currentEvent.Guests * currentEvent.Location.PricePerPerson);
+        //        TbxTotal.Text = currentEvent.TotalAmount.ToString();
+        //    }
+        //}
     }
 }

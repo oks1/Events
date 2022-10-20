@@ -31,7 +31,7 @@ namespace Events
             try
             {
                 //Customers
-                Globals.DbContext = new EventsDbConnection1();
+                Globals.DbContext = new EventsDbConnection();
                 LvCustomers.ItemsSource = Globals.DbContext.Customers.ToList(); // equivalent of SELECT * FROM Customers
 
                 LvEvents.ItemsSource = Globals.DbContext.EventDetails.ToList(); // equivalent of SELECT * FROM Events

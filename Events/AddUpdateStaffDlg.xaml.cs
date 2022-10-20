@@ -203,20 +203,6 @@ namespace Events
         //    return ms.ToArray();
         //}
 
-        public int SaveImage(byte[] imageBytes)
-        {
-            TestingImage Image = new TestingImage();
-            if (!String.IsNullOrEmpty(ImagePath.Text))
-            {
-                Globals.DbContext.TestingImages.Add(new TestingImage()
-                {
-                    image = imageBytes,
-                    name = ImagePath.Text
-                }); 
-                Globals.DbContext.SaveChanges();
-
-            }
-            return Image.id;
-        }
+       
     }
 }
