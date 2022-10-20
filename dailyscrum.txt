@@ -232,10 +232,11 @@ using ling for calculating total
 10/18/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-   
+   Delete customer / event
 2.To do until next Scrum:
-    
+    continue Delete customer / event
 3.Need assistance / figure things out
+	relationships in EF
 
 
 
@@ -262,10 +263,14 @@ need assistance with charts
 10/19/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-  
+   Delete customer / event
+   Delete staff / locations
 2.To do until next Scrum:
-    
+    add validation  for Customer add/update
+    Sum / Totals for statistic 
 3.Need assistance / figure things out
+	relationships in EF
+	lazy/eager loading
 
 
 
