@@ -221,11 +221,12 @@ Assictance with linking the azure blob to our project
 10/18/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+   fixed some bugs with the DB
+   helped in figuring out the calculation of the total on the event update
 2.To do until next Scrum:
-    
+   figure out how to calculate the toal on the add event 
 3.Need assistance / figure things out
-
+using ling for calculating total
 
 
 10/18/2022 Oxana
@@ -251,17 +252,17 @@ Assictance with linking the azure blob to our project
 10/19/2022 Myrzagul
 ===================
 1.Done / not done since last scrum:
-   
+  Looked through the web resources for links and fixed the update image
 2.To do until next Scrum:
-    
+   Figure out how to insert charts 
 3.Need assistance / figure things out
-
+need assistance with charts
 
 
 10/19/2022 Oxana
 ===================
 1.Done / not done since last scrum:
-   
+  
 2.To do until next Scrum:
     
 3.Need assistance / figure things out
