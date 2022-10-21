@@ -211,11 +211,11 @@ Assictance with linking the azure blob to our project
 10/17/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
-   
+   working on dialog Window for add/delete/update
 2.To do until next Scrum:
-    
+    CRUD for Services
 3.Need assistance / figure things out
-
+  Filinf combobox
 
 
 10/18/2022 Myrzagul
@@ -243,11 +243,11 @@ using ling for calculating total
 10/18/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
-   
+   Crud for Services
 2.To do until next Scrum:
-    
+    Filinf combobox
 3.Need assistance / figure things out
-
+    How add to db id
 
 
 10/19/2022 Myrzagul
@@ -277,11 +277,12 @@ need assistance with charts
 10/19/2022 Liutsiia
 ===================
 1.Done / not done since last scrum:
-   
+  Name in  Combobox
+   Id in DB
 2.To do until next Scrum:
-    
+    add event to combobox
 3.Need assistance / figure things out
-
+  Statistic
 
 
 10/20/2022 Myrzagul
